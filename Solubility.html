@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Smart — Solubility</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDE8D8;
+  --paper-2:#E2DBC2;
+  --ink:#1E2C27;
+  --ink-soft:#4B5B54;
+  --teal:#2E5C55;
+  --teal-deep:#17302B;
+  --amber:#B5802C;
+  --amber-soft:#E7C68A;
+  --brick:#8B4636;
+  --sage:#7F8D6C;
+  --line:#C7BE9E;
+  --white:#FBFAF3;
+  --good:#3E6B4F;
+  --bad:#95403A;
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'Work Sans', -apple-system, sans-serif;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--amber-soft);}
+a{color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+h1,h2,h3,h4{font-family:var(--serif);margin:0;font-weight:600;color:var(--teal-deep);}
+p{margin:0;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+/* ---------- HERO ---------- */
+.hero{
+  background:linear-gradient(160deg,var(--teal-deep) 0%, var(--teal) 62%, #3c6e63 100%);
+  color:var(--white);
+  position:relative;
+  overflow:hidden;
+  padding:56px 0 40px;
+}
+.hero .wrap{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.hero-text{max-width:620px;}
+.eyebrow{
+  font-size:13px;letter-spacing:.02em;color:var(--amber-soft);
+  font-family:var(--sans);font-weight:600;margin-bottom:10px;
+}
+.hero h1{font-size:clamp(40px,6vw,64px);color:var(--white);line-height:.98;letter-spacing:-.01em;}
+.hero h1 em{font-style:italic;color:var(--amber-soft);}
+.hero p.lede{margin-top:16px;font-size:16.5px;color:#CFE0D9;max-width:480px;}
+.hero-flask{width:180px;height:220px;flex-shrink:0;opacity:.92;}
+.hero-bg-line{position:absolute;inset:0;z-index:1;opacity:.18;}
+
+/* ---------- NAV ---------- */
+.tabbar{
+  background:var(--white);
+  border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:50;
+}
+.tabbar .wrap{display:flex;gap:2px;overflow-x:auto;padding-top:0;padding-bottom:0;}
+.tabbtn{
+  background:none;border:none;
+  display:flex;align-items:center;gap:8px;
+  padding:16px 18px 13px;
+  font-size:14.5px;font-weight:600;color:var(--ink-soft);
+  border-bottom:3px solid transparent;
+  white-space:nowrap;
+  transition:color .15s ease, border-color .15s ease;
+}
+.tabbtn svg{width:18px;height:18px;flex-shrink:0;}
+.tabbtn:hover{color:var(--teal-deep);}
+.tabbtn.active{color:var(--teal-deep);border-bottom-color:var(--amber);}
+
+/* ---------- MAIN / SECTIONS ---------- */
+main{padding:40px 0 80px;}
+.panel{display:none;animation:fade .35s ease;}
+.panel.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+.section-head{margin-bottom:28px;max-width:640px;}
+.section-head h2{font-size:30px;}
+.section-head p{color:var(--ink-soft);margin-top:8px;font-size:15px;}
+
+/* ---------- OVERVIEW ---------- */
+.def-strip{
+  border-left:3px solid var(--amber);
+  padding:14px 20px;
+  background:var(--white);
+  margin-bottom:10px;
+}
+.def-strip h4{font-size:13px;text-transform:none;color:var(--brick);font-family:var(--sans);font-weight:700;margin-bottom:4px;}
+.def-strip p{font-size:15px;color:var(--ink);}
+
+.vial-row{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0;}
+.vial{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-top:none;
+  border-radius:0 0 8px 8px;
+  padding:16px 16px 14px;
+  width:170px;
+  position:relative;
+}
+.vial::before{
+  content:"";
+  position:absolute;top:-10px;left:14px;right:14px;height:10px;
+  background:var(--teal);border-radius:6px 6px 0 0;
+}
+.vial b{display:block;font-size:14px;color:var(--teal-deep);margin-bottom:6px;font-family:var(--serif);font-size:16px;}
+.vial span{font-size:13px;color:var(--ink-soft);}
+
+.grid-2{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;margin-top:32px;}
+@media(max-width:800px){.grid-2{grid-template-columns:1fr;}}
+
+.formula-box{
+  background:var(--teal-deep);color:var(--white);
+  padding:22px 24px;border-radius:6px;
+}
+.formula-box h4{color:var(--amber-soft);font-family:var(--sans);font-size:13px;font-weight:700;margin-bottom:10px;}
+.formula-box .f{font-family:var(--serif);font-size:26px;margin-bottom:6px;}
+.formula-box p{font-size:13.5px;color:#CFE0D9;}
+.formula-box + .formula-box{margin-top:16px;}
+
+.quickfacts{list-style:none;margin:0;padding:0;}
+.quickfacts li{
+  display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px;
+}
+.quickfacts li:last-child{border-bottom:none;}
+.quickfacts li::before{content:"◆";color:var(--amber);font-size:10px;margin-top:5px;}
+
+/* ---------- DIAGRAMS ---------- */
+.diagram-card{
+  background:var(--white);border:1px solid var(--line);border-radius:8px;
+  padding:24px;margin-bottom:24px;
+}
+.diagram-card h3{font-size:19px;margin-bottom:4px;}
+.diagram-card .hint{color:var(--ink-soft);font-size:13.5px;margin-bottom:18px;display:block;}
+.diagram-body{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;}
+@media(max-width:760px){.diagram-body{grid-template-columns:1fr;}}
+
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.chip{
+  background:var(--paper-2);border:1px solid var(--line);color:var(--ink);
+  padding:8px 14px;border-radius:20px;font-size:13.5px;font-weight:600;
+  transition:all .15s ease;
+}
+.chip:hover{border-color:var(--teal);}
+.chip.active{background:var(--teal-deep);border-color:var(--teal-deep);color:var(--white);}
+
+.readout{
+  background:var(--paper);border-left:3px solid var(--teal);
+  padding:12px 16px;font-size:14px;min-height:64px;display:flex;align-items:center;
+}
+
+svg.diagram-svg{width:100%;height:auto;display:block;}
+
+input[type=range]{width:100%;accent-color:var(--teal);}
+.slider-label{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-soft);margin-bottom:4px;}
+
+.bar-track{background:var(--paper-2);border-radius:20px;height:14px;overflow:hidden;margin-top:6px;}
+.bar-fill{height:100%;border-radius:20px;transition:width .3s ease;}
+.bar-fill.acid{background:var(--brick);}
+.bar-fill.base{background:var(--teal);}
+.bar-row{margin-bottom:14px;}
+.bar-row .lbl{font-size:12.5px;font-weight:600;display:flex;justify-content:space-between;}
+
+table.rel-table{width:100%;border-collapse:collapse;font-size:14px;}
+table.rel-table th,table.rel-table td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);}
+table.rel-table th{color:var(--teal-deep);font-family:var(--serif);font-weight:600;font-size:14px;}
+table.rel-table tr{cursor:pointer;transition:background .15s ease;}
+table.rel-table tr:hover td{background:var(--paper);}
+table.rel-table tr.hit td{background:var(--amber-soft);}
+
+.testbox{margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.testbox input{
+  border:1px solid var(--line);padding:8px 10px;border-radius:5px;width:110px;font-family:inherit;font-size:14px;
+}
+.testbox button{
+  background:var(--teal-deep);color:var(--white);border:none;padding:9px 16px;border-radius:5px;font-weight:600;font-size:13.5px;
+}
+
+.bond-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:12.5px;}
+.bond-legend span{display:inline-flex;align-items:center;gap:5px;}
+.bond-legend i{width:12px;height:3px;display:inline-block;border-radius:2px;}
+
+/* ---------- MINI MAP ---------- */
+.map-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;}
+@media(max-width:800px){.map-layout{grid-template-columns:1fr;}}
+.map-board{
+  background:var(--white);border:1px solid var(--line);border-radius:8px;
+  padding:28px;position:relative;min-height:420px;
+}
+.map-center{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:var(--teal-deep);color:var(--white);
+  padding:16px 22px;border-radius:50%;
+  font-family:var(--serif);font-size:16px;font-weight:600;
+  width:112px;height:112px;display:flex;align-items:center;justify-content:center;text-align:center;
+  box-shadow:0 0 0 6px var(--paper);
+  z-index:3;
+}
+.map-node{
+  position:absolute;
+  background:var(--paper-2);border:1px solid var(--line);
+  padding:8px 13px;border-radius:20px;font-size:12.5px;font-weight:600;
+  transform:translate(-50%,-50%);
+  transition:all .15s ease;white-space:nowrap;z-index:2;
+}
+.map-node:hover{background:var(--amber-soft);border-color:var(--amber);}
+.map-node.active{background:var(--teal);color:var(--white);border-color:var(--teal);}
+.map-thread{position:absolute;background:var(--line);height:1px;transform-origin:0 0;z-index:1;}
+
+.map-reader{
+  background:var(--white);border:1px solid var(--line);border-radius:8px;
+  padding:26px;min-height:420px;
+}
+.map-reader h3{font-size:20px;margin-bottom:10px;color:var(--brick);}
+.map-reader p{font-size:14.5px;color:var(--ink);}
+.map-reader .placeholder{color:var(--ink-soft);font-style:italic;font-size:14px;}
+
+@media(max-width:800px){
+  .map-board{min-height:auto;padding:20px;}
+  .map-center{position:static;transform:none;width:auto;height:auto;border-radius:8px;margin-bottom:16px;box-shadow:none;}
+  .map-node{position:static;transform:none;display:inline-block;margin:4px 6px 0 0;}
+  .map-thread{display:none;}
+}
+
+/* ---------- FLASHCARDS ---------- */
+.fc-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+select{
+  border:1px solid var(--line);background:var(--white);padding:9px 12px;border-radius:5px;font-family:inherit;font-size:13.5px;color:var(--ink);
+}
+.fc-count{font-size:13px;color:var(--ink-soft);font-weight:600;}
+.lvl-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.lvl-row .lvl-label{font-size:12.5px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em;}
+.chip.lvl-chip{padding:8px 16px;}
+.chip.lvl-chip .n{opacity:.7;font-weight:500;margin-left:4px;}
+.quiz-level-card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:28px 24px;text-align:center;max-width:520px;margin:0 auto;}
+.quiz-level-card h3{font-size:20px;margin-bottom:8px;}
+.quiz-level-card p{color:var(--ink-soft);font-size:14px;margin-bottom:20px;}
+.quiz-level-card .btnrow{justify-content:center;margin-bottom:0;}
+.quiz-change-lvl{background:none;border:none;color:var(--teal);font-weight:600;font-size:13px;text-decoration:underline;padding:0;margin-bottom:16px;}
+
+.fc-stage{perspective:1400px;max-width:560px;margin:0 auto;}
+.fc-card{
+  position:relative;height:280px;
+  transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  cursor:pointer;
+}
+.fc-card.flipped{transform:rotateY(180deg);}
+.fc-face{
+  position:absolute;inset:0;backface-visibility:hidden;
+  border-radius:10px;border:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:34px 30px;
+}
+.fc-front{background:var(--white);}
+.fc-back{background:var(--teal-deep);color:var(--white);transform:rotateY(180deg);}
+.fc-face .tag{
+  position:absolute;top:16px;left:18px;font-size:11px;font-weight:700;letter-spacing:.02em;
+  color:var(--amber);
+}
+.fc-back .tag{color:var(--amber-soft);}
+.fc-face .body{font-family:var(--serif);font-size:20px;line-height:1.35;}
+.fc-front .body{color:var(--teal-deep);}
+.fc-face .flip-hint{position:absolute;bottom:14px;right:16px;font-size:11px;color:var(--ink-soft);}
+.fc-back .flip-hint{color:#B9CFC7;}
+
+.fc-nav{display:flex;justify-content:center;gap:10px;margin-top:22px;}
+.fc-nav button{
+  background:var(--white);border:1px solid var(--line);padding:10px 18px;border-radius:6px;font-weight:600;font-size:13.5px;
+}
+.fc-nav button.primary{background:var(--teal-deep);color:var(--white);border-color:var(--teal-deep);}
+.fc-nav button:hover{border-color:var(--teal);}
+
+/* ---------- QUIZ ---------- */
+.quiz-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:20px;}
+.quiz-score{font-size:13.5px;font-weight:600;color:var(--teal-deep);}
+.progress-track{background:var(--paper-2);height:8px;border-radius:6px;overflow:hidden;margin:14px 0 26px;}
+.progress-fill{height:100%;background:var(--amber);transition:width .3s ease;}
+
+.quiz-card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:30px;max-width:680px;margin:0 auto;}
+.quiz-q{font-family:var(--serif);font-size:20px;margin-bottom:22px;color:var(--teal-deep);}
+.opt-list{display:flex;flex-direction:column;gap:10px;}
+.opt{
+  border:1px solid var(--line);background:var(--paper);
+  padding:13px 16px;border-radius:6px;text-align:left;font-size:14.5px;
+  display:flex;gap:10px;align-items:flex-start;
+}
+.opt .letter{
+  width:22px;height:22px;border-radius:50%;background:var(--white);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;flex-shrink:0;
+}
+.opt:hover:not(.locked){border-color:var(--teal);}
+.opt.correct{background:#E4EFE6;border-color:var(--good);}
+.opt.correct .letter{background:var(--good);color:#fff;border-color:var(--good);}
+.opt.wrong{background:#F5E4E1;border-color:var(--bad);}
+.opt.wrong .letter{background:var(--bad);color:#fff;border-color:var(--bad);}
+
+.quiz-footer{display:flex;justify-content:space-between;align-items:center;margin-top:22px;}
+.quiz-footer button{
+  background:var(--teal-deep);color:#fff;border:none;padding:11px 22px;border-radius:6px;font-weight:600;font-size:14px;
+}
+.quiz-footer button:disabled{opacity:.4;cursor:default;}
+.feedback-line{font-size:13.5px;font-weight:600;min-height:20px;}
+.feedback-line.good{color:var(--good);}
+.feedback-line.bad{color:var(--bad);}
+
+.quiz-result{text-align:center;padding:50px 20px;}
+.quiz-result h3{font-size:34px;margin-bottom:8px;}
+.quiz-result p{color:var(--ink-soft);font-size:15px;margin-bottom:24px;}
+.quiz-result button{background:var(--teal-deep);color:#fff;border:none;padding:12px 26px;border-radius:6px;font-weight:600;}
+
+/* ---------- FOOTER ---------- */
+footer{
+  border-top:1px solid var(--line);padding:22px 0;text-align:center;
+  font-size:12.5px;color:var(--ink-soft);background:var(--paper-2);
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="hero-bg-line" viewBox="0 0 1080 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,260 C 200,200 340,300 540,240 C 740,180 880,260 1080,200" stroke="#E7C68A" stroke-width="1.5" fill="none"/>
+    <path d="M0,300 C 220,260 360,320 560,270 C 760,220 900,290 1080,250" stroke="#E7C68A" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="wrap">
+    <div class="hero-text">
+      <div class="eyebrow">Pharmaceutical Technology I — Lecture 3</div>
+      <h1>Study<br><em>Smart.</em></h1>
+      <p class="lede">A compact, hands-on companion for the Solubility lecture — the definitions, the diagrams, the drills, and the recall you need before the exam.</p>
+    </div>
+    <svg class="hero-flask" viewBox="0 0 140 180" xmlns="http://www.w3.org/2000/svg">
+      <path d="M55 10 H85 V55 L112 140 C118 158 108 168 90 168 H50 C32 168 22 158 28 140 L55 55 Z"
+            fill="none" stroke="#F5EFDF" stroke-width="2.5"/>
+      <path d="M32 128 C 50 118 90 118 108 128 L112 140 C118 158 108 168 90 168 H50 C32 168 22 158 28 140 Z"
+            fill="#E7C68A" opacity=".85"/>
+      <line x1="48" y1="9" x2="92" y2="9" stroke="#F5EFDF" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="60" cy="108" r="3" fill="#17302B"/>
+      <circle cx="78" cy="120" r="2.5" fill="#17302B"/>
+      <circle cx="68" cy="140" r="3" fill="#17302B"/>
+      <circle cx="88" cy="105" r="2" fill="#17302B"/>
+    </svg>
+  </div>
+</header>
+
+<nav class="tabbar">
+  <div class="wrap">
+    <button class="tabbtn active" data-tab="overview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5c0-1 1-2 2-2h11c1 0 1.5.5 1.5 1.5v13c0 1-.5 1.5-1.5 1.5H6c-1 0-2 1-2 2V5Z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+      Overview
+    </button>
+    <button class="tabbtn" data-tab="diagrams">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V10M11 20V4M18 20v-7"/><path d="M2 20h20"/></svg>
+      Interactive Diagrams
+    </button>
+    <button class="tabbtn" data-tab="mindmap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2.5"/><circle cx="4" cy="5" r="2"/><circle cx="20" cy="5" r="2"/><circle cx="4" cy="19" r="2"/><circle cx="20" cy="19" r="2"/><path d="M6 6.3 10 10M18 6.3 14 10M6 17.7 10 14M18 17.7 14 14"/></svg>
+      Mini Map
+    </button>
+    <button class="tabbtn" data-tab="flashcards">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="6" width="14" height="10" rx="1.5" transform="rotate(-6 12 11)"/><rect x="4" y="8" width="14" height="10" rx="1.5" fill="#EDE8D8"/></svg>
+      Flash Cards
+    </button>
+    <button class="tabbtn" data-tab="quiz">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.3 2.3L16 9.6"/></svg>
+      Quiz Bank
+    </button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ OVERVIEW ============ -->
+  <section class="panel active" id="panel-overview">
+    <div class="section-head">
+      <h2>The essentials, at a glance</h2>
+      <p>No slide-by-slide walkthrough here — just the definitions, laws, and numbers worth knowing cold.</p>
+    </div>
+
+    <div class="def-strip">
+      <h4>Solubility</h4>
+      <p>The maximum concentration of a solute that can be dissolved in a given solvent, at a given temperature, to form a solution — the solute's ability to form a solution with the solvent.</p>
+    </div>
+    <div class="def-strip">
+      <h4>Rate of dissolution</h4>
+      <p>The speed at which the solute goes into solution. Formula: <b>Rate = ΔC / ΔT (mg/mL/min)</b>. Higher solubility raises dissolution rate — but a faster dissolution rate does not always mean higher solubility.</p>
+    </div>
+
+    <div class="vial-row">
+      <div class="vial"><b>Unsaturated</b><span>Solvent can still dissolve more solute.</span></div>
+      <div class="vial"><b>Saturated</b><span>Maximum solute dissolved; excess solid in equilibrium.</span></div>
+      <div class="vial"><b>Supersaturated</b><span>More solute than normal — made by heating, dissolving, then cooling.</span></div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <h3 style="font-size:19px;margin-bottom:14px;">5 factors affecting solubility of a solid in a liquid</h3>
+        <ul class="quickfacts">
+          <li><b>Temperature</b> — endothermic ↑solubility, exothermic ↓solubility, NaCl is unaffected.</li>
+          <li><b>Molecular structure</b> — polar, non-polar, and semipolar (ethanol) liquids.</li>
+          <li><b>Nature of solute</b> — polymorphism, hydrates, and solvates.</li>
+          <li><b>pH</b> — weak acids dissolve better at high pH, weak bases at low pH.</li>
+          <li><b>Other substances</b> — salting-in raises solubility, salting-out (common ion) lowers it.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="formula-box">
+          <h4>Henry's Law</h4>
+          <div class="f">S(gas) ∝ P</div>
+          <p>At constant temperature, gas solubility by weight is proportional to pressure. CO₂ is about twice as soluble at 0°C as at 20°C.</p>
+        </div>
+        <div class="formula-box">
+          <h4>NaCl reference point</h4>
+          <div class="f">1 g / 2.8 mL</div>
+          <p>1 g of NaCl dissolves in 2.8 mL of water — placing it in the "freely soluble" category (1–10 parts solvent).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIAGRAMS ============ -->
+  <section class="panel" id="panel-diagrams">
+    <div class="section-head">
+      <h2>Interactive Diagrams</h2>
+      <p>Every chart, curve, and table from the lecture — click, drag, and toggle to see how each variable behaves.</p>
+    </div>
+
+    <!-- Saturation states -->
+    <div class="diagram-card">
+      <h3>Saturation states</h3>
+      <span class="hint">Toggle between the three solution states and watch the beaker fill.</span>
+      <div class="diagram-body">
+        <div>
+          <div class="btnrow" id="sat-buttons">
+            <button class="chip" data-sat="unsat">Unsaturated</button>
+            <button class="chip active" data-sat="sat">Saturated</button>
+            <button class="chip" data-sat="super">Supersaturated</button>
+          </div>
+          <div class="readout" id="sat-readout"></div>
+        </div>
+        <svg class="diagram-svg" id="sat-svg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 20 H170 V60 L190 150 C195 165 185 172 170 172 H50 C35 172 25 165 30 150 L50 60 Z" fill="none" stroke="#2E5C55" stroke-width="2.5"/>
+          <line x1="45" y1="19" x2="175" y2="19" stroke="#2E5C55" stroke-width="3" stroke-linecap="round"/>
+          <g id="sat-dots"></g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Temperature effect -->
+    <div class="diagram-card">
+      <h3>Temperature &amp; heat of solution</h3>
+      <span class="hint">Choose a dissolution type to see how solubility responds to heat.</span>
+      <div class="diagram-body">
+        <div>
+          <div class="btnrow" id="temp-buttons">
+            <button class="chip active" data-temp="endo">Endothermic</button>
+            <button class="chip" data-temp="exo">Exothermic</button>
+            <button class="chip" data-temp="neutral">Neither (NaCl)</button>
+          </div>
+          <div class="readout" id="temp-readout"></div>
+        </div>
+        <svg class="diagram-svg" id="temp-svg" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="130" x2="200" y2="130" stroke="#4B5B54" stroke-width="1"/>
+          <line x1="20" y1="130" x2="20" y2="10" stroke="#4B5B54" stroke-width="1"/>
+          <path id="temp-curve" d="M20 100 L200 40" fill="none" stroke="#B5802C" stroke-width="3" stroke-linecap="round"/>
+          <text x="8" y="20" font-size="10" fill="#4B5B54">Solubility</text>
+          <text x="165" y="145" font-size="10" fill="#4B5B54">Temp →</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Ethanol semipolar bonds -->
+    <div class="diagram-card">
+      <h3>Semipolar solvent: ethanol's bonds</h3>
+      <span class="hint">Click a bond group to see whether it behaves as polar or non-polar.</span>
+      <div class="diagram-body">
+        <svg class="diagram-svg" viewBox="0 0 260 140" xmlns="http://www.w3.org/2000/svg">
+          <g font-size="13" fill="#1E2C27" font-family="Work Sans">
+            <text x="18" y="40">H</text><text x="18" y="100">H</text>
+            <text x="75" y="40">H</text><text x="75" y="100">H</text>
+            <text x="30" y="70">C</text><text x="88" y="70">C</text>
+            <text x="140" y="55">O</text><text x="185" y="40">H</text>
+          </g>
+          <g stroke="#7F8D6C" stroke-width="2" class="bond nonpolar" data-bond="ch">
+            <line x1="25" y1="45" x2="25" y2="60"/><line x1="25" y1="80" x2="25" y2="95"/>
+            <line x1="82" y1="45" x2="82" y2="60"/><line x1="82" y1="80" x2="82" y2="95"/>
+          </g>
+          <line x1="38" y1="70" x2="76" y2="70" stroke="#7F8D6C" stroke-width="2" class="bond nonpolar" data-bond="cc"/>
+          <line x1="94" y1="65" x2="132" y2="58" stroke="#8B4636" stroke-width="2.5" class="bond polar" data-bond="co"/>
+          <line x1="148" y1="50" x2="178" y2="42" stroke="#8B4636" stroke-width="2.5" class="bond polar" data-bond="oh"/>
+        </svg>
+        <div>
+          <div class="bond-legend" style="margin-bottom:12px;">
+            <span><i style="background:#7F8D6C"></i>Non-polar (C–H, C–C)</span>
+            <span><i style="background:#8B4636"></i>Polar (C–O, O–H)</span>
+          </div>
+          <div class="readout" id="bond-readout">Click on a bond line in the diagram to inspect it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- pH slider -->
+    <div class="diagram-card">
+      <h3>Effect of pH on weak acids &amp; weak bases</h3>
+      <span class="hint">Drag the slider to change solution pH. Phenobarbital precipitates below pH 5.5.</span>
+      <div class="diagram-body">
+        <div>
+          <div class="slider-label"><span>Acidic (0)</span><span id="ph-value">pH 7</span><span>Basic (14)</span></div>
+          <input type="range" id="ph-slider" min="0" max="14" value="7" step="1">
+          <p style="font-size:12.5px;color:var(--ink-soft);margin-top:10px;">Weak organic acids (e.g. sulfonamides) dissolve better as pH rises. Weak organic bases (e.g. alkaloids) dissolve better as pH falls.</p>
+        </div>
+        <div>
+          <div class="bar-row">
+            <div class="lbl"><span>Weak acid solubility</span><span id="ph-acid-pct"></span></div>
+            <div class="bar-track"><div class="bar-fill acid" id="ph-acid-bar"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="lbl"><span>Weak base solubility</span><span id="ph-base-pct"></span></div>
+            <div class="bar-track"><div class="bar-fill base" id="ph-base-bar"></div></div>
+          </div>
+          <div class="readout" id="ph-readout"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Salting in/out -->
+    <div class="diagram-card">
+      <h3>Salting-in vs. salting-out</h3>
+      <span class="hint">Trigger each effect and watch solubility respond.</span>
+      <div class="diagram-body">
+        <div>
+          <div class="btnrow">
+            <button class="chip" id="salt-in-btn">Add electrolyte → salting-in</button>
+            <button class="chip" id="salt-out-btn">Add common-ion salt → salting-out</button>
+          </div>
+          <div class="readout" id="salt-readout">Pick an action to see the effect on solubility.</div>
+        </div>
+        <svg class="diagram-svg" id="salt-svg" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 15 H170 V55 L190 130 C195 145 185 150 170 150 H50 C35 150 25 145 30 130 L50 55 Z" fill="none" stroke="#2E5C55" stroke-width="2.5"/>
+          <line x1="45" y1="14" x2="175" y2="14" stroke="#2E5C55" stroke-width="3" stroke-linecap="round"/>
+          <g id="salt-dots"></g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Henry's law -->
+    <div class="diagram-card">
+      <h3>Gas-in-liquid solubility — Henry's Law</h3>
+      <span class="hint">Adjust pressure and temperature; solubility follows S ∝ Pressure ÷ Temperature.</span>
+      <div class="diagram-body">
+        <div>
+          <div class="slider-label"><span>Pressure</span><span id="henry-p-val">50</span></div>
+          <input type="range" id="henry-pressure" min="10" max="100" value="50">
+          <div class="slider-label" style="margin-top:12px;"><span>Temperature (°C)</span><span id="henry-t-val">20</span></div>
+          <input type="range" id="henry-temp" min="0" max="40" value="20">
+          <p style="font-size:12.5px;color:var(--ink-soft);margin-top:10px;">CO₂ is roughly twice as soluble at 0°C as it is at 20°C.</p>
+        </div>
+        <svg class="diagram-svg" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+          <line x1="20" y1="130" x2="200" y2="130" stroke="#4B5B54" stroke-width="1"/>
+          <line x1="20" y1="130" x2="20" y2="10" stroke="#4B5B54" stroke-width="1"/>
+          <circle id="henry-dot" cx="100" cy="70" r="6" fill="#B5802C"/>
+          <text x="8" y="20" font-size="10" fill="#4B5B54">Gas dissolved</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Relative solubility table -->
+    <div class="diagram-card">
+      <h3>Relative solubility terms</h3>
+      <span class="hint">Click a row to highlight it, or test your own solvent-to-solute ratio below.</span>
+      <table class="rel-table" id="rel-table">
+        <thead><tr><th>Descriptive term</th><th>Parts of solvent per part of solute</th></tr></thead>
+        <tbody>
+          <tr data-min="0" data-max="1"><td>Very soluble</td><td>&lt; 1</td></tr>
+          <tr data-min="1" data-max="10"><td>Freely soluble</td><td>1 – 10</td></tr>
+          <tr data-min="10" data-max="30"><td>Soluble</td><td>10 – 30</td></tr>
+          <tr data-min="30" data-max="100"><td>Sparingly soluble</td><td>30 – 100</td></tr>
+          <tr data-min="100" data-max="1000"><td>Slightly soluble</td><td>100 – 1000</td></tr>
+          <tr data-min="1000" data-max="10000"><td>Very slightly soluble</td><td>1000 – 10,000</td></tr>
+          <tr data-min="10000" data-max="999999"><td>Practically insoluble / insoluble</td><td>&gt; 10,000</td></tr>
+        </tbody>
+      </table>
+      <div class="testbox">
+        <input type="number" id="rel-input" placeholder="e.g. 2.8">
+        <button id="rel-test-btn">Classify it</button>
+        <span class="readout" id="rel-result" style="min-height:0;padding:8px 14px;"></span>
+      </div>
+    </div>
+
+    <!-- Dissolution rate factors -->
+    <div class="diagram-card">
+      <h3>What speeds up dissolution?</h3>
+      <span class="hint">Click each factor to reveal how it accelerates dissolution.</span>
+      <div class="btnrow" id="rate-buttons">
+        <button class="chip active" data-rate="particle">Smaller particle size</button>
+        <button class="chip" data-rate="agitation">Agitation</button>
+        <button class="chip" data-rate="heat">Heating</button>
+      </div>
+      <div class="readout" id="rate-readout"></div>
+    </div>
+  </section>
+
+  <!-- ============ MINI MAP ============ -->
+  <section class="panel" id="panel-mindmap">
+    <div class="section-head">
+      <h2>Mini Map</h2>
+      <p>Click any topic to read its summary in the panel on the right.</p>
+    </div>
+    <div class="map-layout">
+      <div class="map-board" id="map-board">
+        <div class="map-center">Solubility</div>
+        <!-- nodes injected by JS -->
+      </div>
+      <div class="map-reader" id="map-reader">
+        <p class="placeholder">Select a topic from the map to see its summary here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FLASHCARDS ============ -->
+  <section class="panel" id="panel-flashcards">
+    <div class="section-head">
+      <h2>Flash Cards</h2>
+      <p>Tap a card to flip it. Choose a difficulty, filter by topic, or shuffle the whole deck.</p>
+    </div>
+    <div class="lvl-row" id="fc-level-row">
+      <span class="lvl-label">Difficulty</span>
+      <button class="chip lvl-chip" data-lvl="1">Level 1 · Easy<span class="n">(60)</span></button>
+      <button class="chip lvl-chip" data-lvl="2">Level 2 · Medium<span class="n">(50)</span></button>
+      <button class="chip lvl-chip" data-lvl="3">Level 3 · Hard<span class="n">(40)</span></button>
+    </div>
+    <div class="fc-controls">
+      <select id="fc-filter"></select>
+      <span class="fc-count" id="fc-count"></span>
+    </div>
+    <div class="fc-stage">
+      <div class="fc-card" id="fc-card">
+        <div class="fc-face fc-front">
+          <span class="tag" id="fc-tag-front">TOPIC</span>
+          <div class="body" id="fc-question"></div>
+          <span class="flip-hint">Tap to flip</span>
+        </div>
+        <div class="fc-face fc-back">
+          <span class="tag" id="fc-tag-back">ANSWER</span>
+          <div class="body" id="fc-answer"></div>
+          <span class="flip-hint">Tap to flip back</span>
+        </div>
+      </div>
+    </div>
+    <div class="fc-nav">
+      <button id="fc-prev">← Prev</button>
+      <button class="primary" id="fc-shuffle">Shuffle</button>
+      <button id="fc-next">Next →</button>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="panel" id="panel-quiz">
+    <div class="section-head">
+      <h2>Quiz Bank</h2>
+      <p>150 questions pulled straight from the lecture, across 3 difficulty levels. Answer choices are reshuffled every run.</p>
+    </div>
+
+    <div id="quiz-level-select">
+      <div class="quiz-level-card">
+        <h3>Choose a difficulty</h3>
+        <p>Pick a level to start. You can switch levels anytime from the quiz screen.</p>
+        <div class="btnrow">
+          <button class="chip lvl-chip" data-lvl="1">Level 1 · Easy<span class="n">(60)</span></button>
+          <button class="chip lvl-chip" data-lvl="2">Level 2 · Medium<span class="n">(50)</span></button>
+          <button class="chip lvl-chip" data-lvl="3">Level 3 · Hard<span class="n">(40)</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="quiz-active" style="display:none;">
+      <button class="quiz-change-lvl" id="quiz-change-lvl-btn">← Change difficulty</button>
+      <div class="quiz-top">
+        <span id="quiz-progress-text" style="font-size:13.5px;color:var(--ink-soft);"></span>
+        <span class="quiz-score" id="quiz-score-text">Score: 0 / 0</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="quiz-progress-fill"></div></div>
+
+      <div class="quiz-card">
+        <div class="quiz-q" id="quiz-question"></div>
+        <div class="opt-list" id="quiz-options"></div>
+        <div class="quiz-footer">
+          <span class="feedback-line" id="quiz-feedback"></span>
+          <button id="quiz-next-btn" disabled>Next question</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="quiz-result" class="quiz-result" style="display:none;">
+      <h3 id="quiz-final-score"></h3>
+      <p id="quiz-final-note"></p>
+      <button id="quiz-restart-btn">Restart quiz</button>
+      <button class="quiz-change-lvl" id="quiz-result-change-lvl-btn">← Change difficulty</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>© Anmar Taha — Study Smart · Pharmaceutical Technology I</footer>
+
+<script>
+/* ============================================================
+   SHARED DATA
+============================================================ */
+const topics = {
+  definitions: {
+    title:"Definitions",
+    text:"Solubility is the maximum concentration of solute that can be dissolved in a given solvent to form a solution — or, put simply, a solute's ability to form a solution with a solvent."
+  },
+  saturation: {
+    title:"Saturation states",
+    text:"Unsaturated: less solute dissolved than the maximum possible. Saturated: the maximum amount dissolved, with excess solid in equilibrium. Supersaturated: more solute dissolved than normally possible, prepared by heating, dissolving, then cooling carefully."
+  },
+  temperature: {
+    title:"Temperature",
+    text:"Endothermic dissolution: solubility rises with temperature (positive heat of solution). Exothermic dissolution: solubility falls with temperature (negative heat of solution). Some compounds, like NaCl, are barely affected either way."
+  },
+  structure: {
+    title:"Molecular structure",
+    text:"Polar liquids mix well with other polar liquids and dissolve electrolytes, but only slightly with non-polar liquids. Non-polar solutes need non-polar solvents. Semipolar liquids like ethanol carry both non-polar C–H/C–C bonds and polar C–O/O–H bonds, letting them bridge the two worlds."
+  },
+  solute: {
+    title:"Nature of the solute",
+    text:"Polymorphism: a compound exists in more than one crystal form with different melting point, solubility, absorption, and therapeutic activity (e.g. chloramphenicol). Hydrates contain water in the crystal (e.g. ampicillin trihydrate) and are usually less soluble than the anhydrous form. Solvates contain another solvent and are usually more soluble than the non-solvate form."
+  },
+  ph: {
+    title:"Effect of pH",
+    text:"Weak organic acids (e.g. sulfonamides) become more soluble as pH rises, through the formation of water-soluble salts. Weak organic bases (e.g. alkaloids) become more soluble as pH falls. Phenobarbital's solubility rises above pH 5.5; below that, the free acid precipitates."
+  },
+  other: {
+    title:"Other substances — salting in/out",
+    text:"Salting-in: adding an electrolyte to a non-electrolyte solution increases solubility. Salting-out: adding a soluble salt that shares a common ion with a slightly soluble salt causes it to precipitate — e.g. adding NaCl to saturated AgCl precipitates AgCl via the shared Cl⁻ ion."
+  },
+  relative: {
+    title:"Relative solubility terms",
+    text:"From most to least soluble: very soluble (<1 part solvent), freely soluble (1–10), soluble (10–30), sparingly soluble (30–100), slightly soluble (100–1000), very slightly soluble (1000–10,000), practically insoluble (>10,000). 1 g of NaCl needs 2.8 mL of water — freely soluble."
+  },
+  gas: {
+    title:"Gas-in-liquid solubility",
+    text:"Henry's Law: at constant temperature, the solubility of a gas by weight in a liquid is proportional to the applied pressure. Raising the temperature decreases gas solubility — CO₂ is about twice as soluble at 0°C as at 20°C."
+  },
+  dissolution: {
+    title:"Rate of dissolution",
+    text:"Rate of dissolution = ΔC/ΔT (mg/mL/min) — the speed at which solute enters solution. It increases with smaller particle size (more surface area), agitation (fresh solvent contacts the surface), and heating (more frequent solvent-solute collisions). Higher solubility raises dissolution rate, but faster dissolution doesn't always mean higher solubility."
+  }
+};
+
+/* ============================================================
+   TAB NAVIGATION
+============================================================ */
+const tabBtns = document.querySelectorAll(".tabbtn");
+const panels = document.querySelectorAll(".panel");
+tabBtns.forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    tabBtns.forEach(b=>b.classList.remove("active"));
+    panels.forEach(p=>p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("panel-"+btn.dataset.tab).classList.add("active");
+  });
+});
+
+/* ============================================================
+   DIAGRAM 1 — SATURATION STATES
+============================================================ */
+const satData = {
+  unsat:{n:4, text:"Unsaturated: the solvent could still dissolve more solute — the beaker holds only a few free particles."},
+  sat:{n:14, text:"Saturated: the maximum amount of solute has dissolved for this temperature; excess solid stays in equilibrium with the dissolved fraction."},
+  super:{n:22, text:"Supersaturated: more solute is dissolved than would normally be possible — reached by dissolving excess solute in a heated solvent, then cooling it undisturbed."}
+};
+function renderSat(state){
+  const g = document.getElementById("sat-dots");
+  g.innerHTML = "";
+  const cfg = satData[state];
+  for(let i=0;i<cfg.n;i++){
+    const cx = 45 + Math.random()*130;
+    const cy = 70 + Math.random()*90;
+    g.innerHTML += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="4" fill="#B5802C"/>`;
+  }
+  document.getElementById("sat-readout").textContent = cfg.text;
+}
+document.getElementById("sat-buttons").addEventListener("click", e=>{
+  const btn = e.target.closest("[data-sat]");
+  if(!btn) return;
+  document.querySelectorAll("#sat-buttons .chip").forEach(c=>c.classList.remove("active"));
+  btn.classList.add("active");
+  renderSat(btn.dataset.sat);
+});
+renderSat("sat");
+
+/* ============================================================
+   DIAGRAM 2 — TEMPERATURE EFFECT
+============================================================ */
+const tempData = {
+  endo:{path:"M20 120 L200 25", text:"Endothermic reaction: raising temperature increases solubility — a positive heat of solution."},
+  exo:{path:"M20 25 L200 120", text:"Exothermic reaction: raising temperature decreases solubility — a negative heat of solution."},
+  neutral:{path:"M20 75 L200 75", text:"Neither exothermic nor endothermic: solubility stays about the same at low and high temperature — e.g. NaCl."}
+};
+document.getElementById("temp-buttons").addEventListener("click", e=>{
+  const btn = e.target.closest("[data-temp]");
+  if(!btn) return;
+  document.querySelectorAll("#temp-buttons .chip").forEach(c=>c.classList.remove("active"));
+  btn.classList.add("active");
+  const cfg = tempData[btn.dataset.temp];
+  document.getElementById("temp-curve").setAttribute("d", cfg.path);
+  document.getElementById("temp-readout").textContent = cfg.text;
+});
+document.getElementById("temp-readout").textContent = tempData.endo.text;
+
+/* ============================================================
+   DIAGRAM 3 — ETHANOL BONDS
+============================================================ */
+const bondData = {
+  ch:"C–H bond: non-polar. Ethanol has five of these carbon–hydrogen bonds.",
+  cc:"C–C bond: non-polar — the hydrocarbon backbone shared with non-polar solvents.",
+  co:"C–O bond: polar — part of what lets ethanol interact with water and other polar molecules.",
+  oh:"O–H bond: polar — capable of hydrogen bonding with water, just like the O–H in water itself."
+};
+document.querySelectorAll(".bond").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    document.getElementById("bond-readout").textContent = bondData[b.dataset.bond];
+  });
+});
+
+/* ============================================================
+   DIAGRAM 4 — pH SLIDER
+============================================================ */
+const phSlider = document.getElementById("ph-slider");
+function renderPh(){
+  const v = parseInt(phSlider.value,10);
+  document.getElementById("ph-value").textContent = "pH " + v;
+  const acidPct = Math.round((v/14)*100);
+  const basePct = Math.round(((14-v)/14)*100);
+  document.getElementById("ph-acid-bar").style.width = acidPct+"%";
+  document.getElementById("ph-base-bar").style.width = basePct+"%";
+  document.getElementById("ph-acid-pct").textContent = acidPct+"%";
+  document.getElementById("ph-base-pct").textContent = basePct+"%";
+  let msg;
+  if(v < 5.5) msg = "Below pH 5.5: a weak-acid drug like phenobarbital would start to precipitate as its free acid.";
+  else msg = "Above pH 5.5: phenobarbital and other weak acids form water-soluble salts and stay dissolved.";
+  document.getElementById("ph-readout").textContent = msg;
+}
+phSlider.addEventListener("input", renderPh);
+renderPh();
+
+/* ============================================================
+   DIAGRAM 5 — SALTING IN / OUT
+============================================================ */
+function renderSaltDots(n, color){
+  const g = document.getElementById("salt-dots");
+  g.innerHTML = "";
+  for(let i=0;i<n;i++){
+    const cx = 45 + Math.random()*130;
+    const cy = 60 + Math.random()*80;
+    g.innerHTML += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="4" fill="${color}"/>`;
+  }
+}
+renderSaltDots(10,"#2E5C55");
+document.getElementById("salt-in-btn").addEventListener("click", ()=>{
+  renderSaltDots(20,"#2E5C55");
+  document.getElementById("salt-readout").textContent = "Salting-in: adding an electrolyte to a non-electrolyte solution increases solubility — more particles stay dissolved.";
+});
+document.getElementById("salt-out-btn").addEventListener("click", ()=>{
+  renderSaltDots(4,"#8B4636");
+  document.getElementById("salt-readout").textContent = "Salting-out: adding a soluble salt with a common ion (e.g. NaCl into saturated AgCl) precipitates the slightly soluble salt — solubility drops.";
+});
+
+/* ============================================================
+   DIAGRAM 6 — HENRY'S LAW
+============================================================ */
+const henryP = document.getElementById("henry-pressure");
+const henryT = document.getElementById("henry-temp");
+function renderHenry(){
+  const p = parseInt(henryP.value,10);
+  const t = parseInt(henryT.value,10);
+  document.getElementById("henry-p-val").textContent = p;
+  document.getElementById("henry-t-val").textContent = t;
+  const solubility = p / (t+10) * 8;
+  const y = Math.max(15, 125 - solubility);
+  document.getElementById("henry-dot").setAttribute("cy", y.toFixed(1));
+}
+henryP.addEventListener("input", renderHenry);
+henryT.addEventListener("input", renderHenry);
+renderHenry();
+
+/* ============================================================
+   DIAGRAM 7 — RELATIVE SOLUBILITY TABLE
+============================================================ */
+document.querySelectorAll("#rel-table tbody tr").forEach(row=>{
+  row.addEventListener("click", ()=>{
+    document.querySelectorAll("#rel-table tbody tr").forEach(r=>r.classList.remove("hit"));
+    row.classList.add("hit");
+  });
+});
+document.getElementById("rel-test-btn").addEventListener("click", ()=>{
+  const val = parseFloat(document.getElementById("rel-input").value);
+  const resultBox = document.getElementById("rel-result");
+  if(isNaN(val) || val < 0){
+    resultBox.textContent = "Enter a valid number of parts of solvent.";
+    return;
+  }
+  let matchRow = null;
+  document.querySelectorAll("#rel-table tbody tr").forEach(row=>{
+    row.classList.remove("hit");
+    const min = parseFloat(row.dataset.min), max = parseFloat(row.dataset.max);
+    if(val >= min && val < max){
+      matchRow = row;
+    }
+  });
+  if(matchRow){
+    matchRow.classList.add("hit");
+    resultBox.textContent = val + " parts solvent → " + matchRow.children[0].textContent;
+  }
+});
+
+/* ============================================================
+   DIAGRAM 8 — DISSOLUTION RATE FACTORS
+============================================================ */
+const rateData = {
+  particle:"Smaller particle size → greater surface area exposed to solvent → faster dissolution.",
+  agitation:"Agitation removes the concentrated solution layer at the solute's surface and replaces it with fresh solvent → faster dissolution.",
+  heat:"Heating increases how often solvent molecules collide with the solute's surface → faster dissolution."
+};
+document.getElementById("rate-buttons").addEventListener("click", e=>{
+  const btn = e.target.closest("[data-rate]");
+  if(!btn) return;
+  document.querySelectorAll("#rate-buttons .chip").forEach(c=>c.classList.remove("active"));
+  btn.classList.add("active");
+  document.getElementById("rate-readout").textContent = rateData[btn.dataset.rate];
+});
+document.getElementById("rate-readout").textContent = rateData.particle;
+
+/* ============================================================
+   MINI MAP
+============================================================ */
+const mapNodes = [
+  {key:"definitions", angle:270, r:0},
+  {key:"saturation", angle:0},
+  {key:"temperature", angle:40},
+  {key:"structure", angle:80},
+  {key:"solute", angle:120},
+  {key:"ph", angle:160},
+  {key:"other", angle:200},
+  {key:"relative", angle:240},
+  {key:"gas", angle:290},
+  {key:"dissolution", angle:330}
+];
+function buildMap(){
+  const board = document.getElementById("map-board");
+  const rect = board.getBoundingClientRect();
+  const isMobile = window.innerWidth <= 800;
+  document.querySelectorAll(".map-node,.map-thread").forEach(n=>n.remove());
+  if(isMobile){
+    mapNodes.forEach(n=>{
+      if(n.key==="definitions") return;
+      const el = document.createElement("button");
+      el.className = "map-node";
+      el.textContent = topics[n.key].title;
+      el.dataset.key = n.key;
+      board.appendChild(el);
+    });
+    return;
+  }
+  const cx = rect.width/2, cy = rect.height/2, radius = Math.min(rect.width, rect.height)/2 - 40;
+  mapNodes.forEach(n=>{
+    if(n.key==="definitions") return;
+    const rad = n.angle * Math.PI/180;
+    const x = cx + radius*Math.cos(rad);
+    const y = cy + radius*Math.sin(rad);
+    const thread = document.createElement("div");
+    thread.className = "map-thread";
+    const len = Math.hypot(x-cx, y-cy);
+    thread.style.width = len+"px";
+    thread.style.left = cx+"px";
+    thread.style.top = cy+"px";
+    thread.style.transform = `rotate(${Math.atan2(y-cy,x-cx)}rad)`;
+    board.appendChild(thread);
+
+    const el = document.createElement("button");
+    el.className = "map-node";
+    el.style.left = x+"px";
+    el.style.top = y+"px";
+    el.textContent = topics[n.key].title;
+    el.dataset.key = n.key;
+    board.appendChild(el);
+  });
+}
+document.getElementById("map-board").addEventListener("click", e=>{
+  const node = e.target.closest(".map-node");
+  if(!node) return;
+  document.querySelectorAll(".map-node").forEach(n=>n.classList.remove("active"));
+  node.classList.add("active");
+  const t = topics[node.dataset.key];
+  document.getElementById("map-reader").innerHTML = `<h3>${t.title}</h3><p>${t.text}</p>`;
+});
+window.addEventListener("resize", buildMap);
+window.addEventListener("load", buildMap);
+setTimeout(buildMap, 50);
+
+/* ============================================================
+   FLASHCARD DATA (150 cards — 3 difficulty levels)
+============================================================ */
+const flashcards = [
+{"c": "Definitions", "q": "What does the solubility of an agent in a solvent indicate?", "a": "The maximum concentration to which a solution may be prepared with that agent and that solvent.", "lvl": 1},
+{"c": "Definitions", "q": "Give the second (OR) definition of solubility from the lecture.", "a": "The ability of a solute substance to form a solution with another substance, the solvent.", "lvl": 1},
+{"c": "Saturation", "q": "What is a saturated solution?", "a": "When excess solid (solute) is shaken with liquid (solvent) for a time, the maximum amount of it that can be dissolved — saturated solubility.", "lvl": 1},
+{"c": "Saturation", "q": "In the unsaturated vs. saturated diagram, which beaker has fewer dissolved particles?", "a": "The unsaturated solution.", "lvl": 1},
+{"c": "Saturation", "q": "What happens when excess solute is added to a saturated solution and the temperature is increased?", "a": "More solute will be dissolved, forming a supersaturated solution.", "lvl": 1},
+{"c": "Saturation", "q": "How do you usually supersaturate a solution?", "a": "By heating it, dissolving more solute, and then cooling it.", "lvl": 1},
+{"c": "Factors", "q": "How many factors affect the solubility of a solid in a liquid, according to the lecture?", "a": "Five.", "lvl": 1},
+{"c": "Factors", "q": "Name factor #1 affecting solubility of a solid in a liquid.", "a": "Temperature.", "lvl": 1},
+{"c": "Factors", "q": "Name factor #2 affecting solubility of a solid in a liquid.", "a": "Effect of molecular structure.", "lvl": 1},
+{"c": "Factors", "q": "Name factor #3 affecting solubility of a solid in a liquid.", "a": "Effect of nature of solute.", "lvl": 1},
+{"c": "Factors", "q": "Name factor #4 affecting solubility of a solid in a liquid.", "a": "Effect of pH on solubility.", "lvl": 1},
+{"c": "Factors", "q": "Name factor #5 affecting solubility of a solid in a liquid.", "a": "Effect of other substances on solubility.", "lvl": 1},
+{"c": "Temperature", "q": "In an endothermic reaction, what does increasing temperature do to solubility?", "a": "It increases solubility (positive heat of solution).", "lvl": 1},
+{"c": "Temperature", "q": "In an exothermic reaction, what does increasing temperature do to solubility?", "a": "It decreases solubility (negative heat of solution).", "lvl": 1},
+{"c": "Temperature", "q": "What term describes a system where solubility is the same at low and high temperature?", "a": "Neither exothermic nor endothermic system, e.g. NaCl.", "lvl": 1},
+{"c": "Structure", "q": "Are polar liquids miscible with other polar liquids?", "a": "Yes, miscible with other polar liquids.", "lvl": 1},
+{"c": "Structure", "q": "Are polar liquids miscible with non-polar liquids?", "a": "Only slightly miscible with non-polar liquids.", "lvl": 1},
+{"c": "Structure", "q": "What type of compounds do polar liquids dissolve?", "a": "Electrovalent (ionic) compounds.", "lvl": 1},
+{"c": "Structure", "q": "With what can a polar solute form hydrogen bonds, per the lecture example?", "a": "With the solvent, e.g. water and alcohol of low molecular weight.", "lvl": 1},
+{"c": "Structure", "q": "What happens to solubility in water as the molecular weight of an alcohol increases?", "a": "Polarity decreases, and solubility in water decreases.", "lvl": 1},
+{"c": "Structure", "q": "Why is water a poor solvent for non-polar substances?", "a": "Because it readily dissolves salts and other electrolytes instead.", "lvl": 1},
+{"c": "Structure", "q": "What kind of liquid is required for non-polar solutes?", "a": "Non-polar liquids.", "lvl": 1},
+{"c": "Structure", "q": "Which semipolar liquid is given as the lecture's example?", "a": "Ethyl alcohol (ethanol).", "lvl": 1},
+{"c": "Structure", "q": "How many non-polar carbon–hydrogen bonds does ethanol have?", "a": "Five.", "lvl": 1},
+{"c": "Structure", "q": "How many C–C bonds does ethanol have, and is it polar or non-polar?", "a": "One C–C bond, and it is non-polar.", "lvl": 1},
+{"c": "Solute Nature", "q": "Define polymorphism as given in the lecture.", "a": "A phenomenon in which a compound exists in more than one form with the same chemical structure but different physical properties.", "lvl": 1},
+{"c": "Solute Nature", "q": "List the physical properties that can differ between polymorphs.", "a": "Melting point, solubility, absorption, and therapeutic activity.", "lvl": 1},
+{"c": "Solute Nature", "q": "Which drug is given as the classic polymorphism example?", "a": "Chloramphenicol — it exists in more than one polymorph, one active and one inactive.", "lvl": 1},
+{"c": "Solute Nature", "q": "Name the four methods used to determine crystal properties.", "a": "Hot stage microscopy, thermal analysis, infrared spectroscopy, and X-ray diffraction.", "lvl": 1},
+{"c": "Solute Nature", "q": "What are hydrates?", "a": "Compounds that contain water in their crystals.", "lvl": 1},
+{"c": "Solute Nature", "q": "Which drug is given as the trihydrate example, and how many water molecules does it contain?", "a": "Ampicillin trihydrate, which contains three molecules of water.", "lvl": 1},
+{"c": "Solute Nature", "q": "Which is more soluble: the anhydrous form or the hydrate form of the same compound?", "a": "The anhydrous form is more soluble.", "lvl": 1},
+{"c": "Solute Nature", "q": "What are solvates?", "a": "Compounds that contain a solvent other than water in their crystals.", "lvl": 1},
+{"c": "Solute Nature", "q": "Which is more soluble: the solvate form or the non-solvate form?", "a": "The solvate form is more soluble than the non-solvate form.", "lvl": 1},
+{"c": "pH Effects", "q": "Organic substances are either weak acids or what else?", "a": "Weak bases.", "lvl": 1},
+{"c": "pH Effects", "q": "Give the example class of weak organic acids named in the lecture.", "a": "Sulfonamides.", "lvl": 1},
+{"c": "pH Effects", "q": "How does the solubility of weak organic acids change as pH increases?", "a": "It is increased, due to formation of water-soluble salts.", "lvl": 1},
+{"c": "pH Effects", "q": "Give the example class of weak organic bases named in the lecture.", "a": "Alkaloids.", "lvl": 1},
+{"c": "pH Effects", "q": "How does the solubility of weak organic bases change as pH decreases?", "a": "It increases, due to formation of water-soluble salts.", "lvl": 1},
+{"c": "pH Effects", "q": "Above what pH does phenobarbital's solubility increase by addition of strong base?", "a": "Above pH 5.5.", "lvl": 1},
+{"c": "pH Effects", "q": "What happens to phenobarbital if the pH of its solution is decreased with strong acid?", "a": "Phenobarbital (free acid) will precipitate.", "lvl": 1},
+{"c": "Salting In/Out", "q": "Define salting-in.", "a": "Addition of an electrolyte to a non-electrolyte solution, causing an increase in solubility.", "lvl": 1},
+{"c": "Salting In/Out", "q": "Define salting-out.", "a": "Addition of a soluble salt having a common ion to a solution of a slightly soluble salt, causing precipitation (decreased solubility).", "lvl": 1},
+{"c": "Salting In/Out", "q": "In the lecture's salting-out example, which two salts are involved?", "a": "NaCl added to a saturated solution of AgCl.", "lvl": 1},
+{"c": "Salting In/Out", "q": "Which common ion causes AgCl to precipitate when NaCl is added?", "a": "The chloride ion, Cl⁻.", "lvl": 1},
+{"c": "Relative Terms", "q": "What descriptive term corresponds to less than 1 part solvent per part solute?", "a": "Very soluble.", "lvl": 1},
+{"c": "Relative Terms", "q": "What descriptive term corresponds to 1–10 parts solvent per part solute?", "a": "Freely soluble.", "lvl": 1},
+{"c": "Relative Terms", "q": "What descriptive term corresponds to 10–30 parts solvent per part solute?", "a": "Soluble.", "lvl": 1},
+{"c": "Relative Terms", "q": "What descriptive term corresponds to 30–100 parts solvent per part solute?", "a": "Sparingly soluble.", "lvl": 1},
+{"c": "Relative Terms", "q": "What descriptive term corresponds to 100–1000 parts solvent per part solute?", "a": "Slightly soluble.", "lvl": 1},
+{"c": "Relative Terms", "q": "What descriptive term corresponds to 1000–10,000 parts solvent per part solute?", "a": "Very slightly soluble.", "lvl": 1},
+{"c": "Relative Terms", "q": "What descriptive term corresponds to more than 10,000 parts solvent per part solute?", "a": "Practically insoluble (or insoluble).", "lvl": 1},
+{"c": "Relative Terms", "q": "According to the lecture, 1 g of NaCl dissolves in how much water?", "a": "2.8 mL of water.", "lvl": 1},
+{"c": "Gas Solubility", "q": "State Henry's Law in one sentence.", "a": "The solubility of a gas by weight in a liquid is proportional to the pressure at constant temperature.", "lvl": 1},
+{"c": "Gas Solubility", "q": "What happens to gas solubility in a liquid as temperature increases?", "a": "It decreases.", "lvl": 1},
+{"c": "Gas Solubility", "q": "How much more soluble is CO2 at 0°C compared with 20°C?", "a": "About twice as soluble.", "lvl": 1},
+{"c": "Dissolution Rate", "q": "Define rate of dissolution.", "a": "The speed at which the solute goes into solution.", "lvl": 1},
+{"c": "Dissolution Rate", "q": "Give the formula for rate of dissolution.", "a": "Rate of dissolution = ΔC/ΔT = mg/mL/min.", "lvl": 1},
+{"c": "Dissolution Rate", "q": "Name the three factors affecting rate of dissolution listed in the lecture.", "a": "Particle size of solute, agitation, and heating.", "lvl": 1},
+{"c": "Dissolution Rate", "q": "What effect does reducing particle size have on dissolution rate?", "a": "It increases surface area and increases the rate of dissolution.", "lvl": 1},
+{"c": "Saturation", "q": "Compare a saturated and a supersaturated solution in terms of solute content.", "a": "A saturated solution holds the maximum solute possible at equilibrium with excess solid; a supersaturated solution holds even more solute than that, prepared by heating, dissolving extra solute, then cooling.", "lvl": 2},
+{"c": "Temperature", "q": "Why does NaCl's solubility barely change with temperature, unlike most salts?", "a": "Because its dissolution is neither exothermic nor endothermic — it has essentially no significant heat of solution in either direction.", "lvl": 2},
+{"c": "Structure", "q": "Why does increasing the molecular weight of an alcohol decrease its water solubility?", "a": "Because the larger non-polar hydrocarbon portion lowers the molecule's overall polarity, weakening its hydrogen-bonding compatibility with water.", "lvl": 2},
+{"c": "Structure", "q": "Why is water described as a poor solvent for non-polar substances even though it is an excellent solvent overall?", "a": "Because its strong polarity favors dissolving ionic/electrolyte compounds through ion-dipole interactions, leaving little affinity for non-polar molecules.", "lvl": 2},
+{"c": "Structure", "q": "Why can a semipolar liquid like ethanol dissolve substances that neither pure polar nor pure non-polar solvents can?", "a": "Because it carries both non-polar C–H/C–C character and a polar C–O/H–O group, letting it interact with both types of solute.", "lvl": 2},
+{"c": "Structure", "q": "Which specific bonds give ethanol its polar character, and which give it its non-polar character?", "a": "The C–O and H–O bonds are polar; the five C–H bonds and the one C–C bond are non-polar.", "lvl": 2},
+{"c": "Solute Nature", "q": "The lecture asks: why is the anhydrous form of a compound usually more soluble than its hydrate form?", "a": "Because the hydrate's crystal lattice already incorporates water molecules, making it energetically less favorable to accept additional water during dissolution than the anhydrous lattice.", "lvl": 2},
+{"c": "Solute Nature", "q": "The lecture asks: why is a solvate usually more soluble in water than the non-solvate form?", "a": "Because the solvate's crystal lattice is already partly disrupted by the incorporated solvent, lowering the lattice energy that must be overcome to dissolve in water.", "lvl": 2},
+{"c": "Solute Nature", "q": "Why does polymorphism matter clinically, not just physically?", "a": "Because different polymorphs can have different therapeutic activity — one form (like a chloramphenicol polymorph) can be active while another is inactive, even with identical chemical structure.", "lvl": 2},
+{"c": "Solute Nature", "q": "Distinguish a hydrate from a solvate.", "a": "A hydrate contains water molecules in its crystal; a solvate contains a solvent other than water in its crystal.", "lvl": 2},
+{"c": "Solute Nature", "q": "What differentiates a monohydrate, dihydrate, and trihydrate?", "a": "The number of water molecules incorporated into the crystal — one, two, or three, respectively.", "lvl": 2},
+{"c": "pH Effects", "q": "Why does raising the pH of a weak organic acid (like a sulfonamide) increase its solubility?", "a": "Because the added base reacts with the weak acid to form a water-soluble salt.", "lvl": 2},
+{"c": "pH Effects", "q": "Why does lowering the pH of a weak organic base (like an alkaloid) increase its solubility?", "a": "Because the added acid reacts with the weak base to form a water-soluble salt.", "lvl": 2},
+{"c": "pH Effects", "q": "What happens on either side of phenobarbital's pH 5.5 threshold?", "a": "Above pH 5.5 (base added), its solubility increases; below that (acid added), the free acid precipitates.", "lvl": 2},
+{"c": "Salting In/Out", "q": "How does salting-in differ mechanistically from salting-out?", "a": "Salting-in adds an electrolyte to a non-electrolyte solution to increase solubility; salting-out adds a common-ion salt to a slightly soluble salt's solution to force precipitation.", "lvl": 2},
+{"c": "Salting In/Out", "q": "Why does adding NaCl to a saturated AgCl solution cause AgCl to precipitate?", "a": "Because the added Cl⁻ (common ion) pushes the AgCl equilibrium toward the solid phase, lowering AgCl's effective solubility.", "lvl": 2},
+{"c": "Salting In/Out", "q": "Name three soluble salts listed as capable of causing salting-out.", "a": "Any three of: NaCl, LiBr, KI, NH4NO3, BaCl2, MgI2, Na2SO4, Na3PO4, NaNO2.", "lvl": 2},
+{"c": "Salting In/Out", "q": "Name the three slightly soluble salts given as examples affected by salting-out.", "a": "CaSO4, BaSO4, and BiPO4.", "lvl": 2},
+{"c": "Relative Terms", "q": "A compound needs 50 parts of solvent per part of solute. Which descriptive category is that?", "a": "Sparingly soluble (30–100 parts).", "lvl": 2},
+{"c": "Relative Terms", "q": "A compound needs 5 parts of solvent per part of solute. Which descriptive category is that?", "a": "Freely soluble (1–10 parts).", "lvl": 2},
+{"c": "Relative Terms", "q": "A compound needs 500 parts of solvent per part of solute. Which descriptive category is that?", "a": "Slightly soluble (100–1000 parts).", "lvl": 2},
+{"c": "Relative Terms", "q": "A compound needs 2000 parts of solvent per part of solute. Which descriptive category is that?", "a": "Very slightly soluble (1000–10,000 parts).", "lvl": 2},
+{"c": "Relative Terms", "q": "Why is NaCl (2.8 mL/g) classified as freely soluble rather than very soluble?", "a": "Because 2.8 parts of solvent falls within the 1–10 range defined for 'freely soluble,' not under 1 part, which defines 'very soluble.'", "lvl": 2},
+{"c": "Gas Solubility", "q": "How does Henry's Law relate gas solubility to pressure?", "a": "At constant temperature, the solubility of a gas by weight in a liquid is directly proportional to the pressure applied.", "lvl": 2},
+{"c": "Dissolution Rate", "q": "How does 'rate of dissolution' differ conceptually from 'solubility'?", "a": "Solubility is the maximum amount that CAN dissolve (an equilibrium/thermodynamic value); rate of dissolution is how FAST the solute actually goes into solution (a kinetic value).", "lvl": 2},
+{"c": "Dissolution Rate", "q": "Why does increasing solubility always raise the dissolution rate, but a higher dissolution rate doesn't always mean higher solubility?", "a": "Because dissolution rate depends on solubility plus kinetic factors (particle size, agitation, heat), so speeding up the kinetics doesn't change the underlying equilibrium solubility.", "lvl": 2},
+{"c": "Dissolution Rate", "q": "Explain, mechanistically, why reducing particle size increases dissolution rate.", "a": "Smaller particles have a greater total surface area exposed to solvent, so more solute–solvent contact occurs per unit time.", "lvl": 2},
+{"c": "Dissolution Rate", "q": "Explain, mechanistically, why agitation increases dissolution rate.", "a": "It removes the more concentrated solution layer forming at the solute's surface and replaces it with fresh, less concentrated solvent.", "lvl": 2},
+{"c": "Dissolution Rate", "q": "Explain, mechanistically, why heating increases dissolution rate.", "a": "It increases the frequency with which solvent molecules collide with the surface of the dissolving material.", "lvl": 2},
+{"c": "Dissolution Rate", "q": "If you both reduce particle size and heat a suspension, what happens to the dissolution rate?", "a": "Both factors act to increase it further, since they act through different, additive mechanisms (surface area and collision frequency).", "lvl": 2},
+{"c": "Factors", "q": "Which factor category explains why NaCl is unusual compared to most temperature-dependent solutes?", "a": "Temperature — NaCl belongs to the rare 'neither exothermic nor endothermic' category, where solubility barely changes with heat.", "lvl": 2},
+{"c": "Structure", "q": "How would you predict water solubility trends across methanol, ethanol, and propanol?", "a": "Solubility in water should decrease as chain length (molecular weight) increases, since polarity progressively decreases.", "lvl": 2},
+{"c": "Relative Terms", "q": "Rank these terms from most to least soluble: sparingly soluble, freely soluble, very slightly soluble, soluble.", "a": "Freely soluble > soluble > sparingly soluble > very slightly soluble.", "lvl": 2},
+{"c": "Relative Terms", "q": "A drug needs 15 parts of solvent per part of solute. Which category, and why?", "a": "Soluble — because 15 falls in the 10–30 parts range.", "lvl": 2},
+{"c": "pH Effects", "q": "Contrast the two directions of phenobarbital's pH-solubility relationship.", "a": "Raising pH above 5.5 with base increases solubility by salt formation; lowering pH with acid pushes it below threshold, precipitating the free acid form.", "lvl": 2},
+{"c": "Solute Nature", "q": "Differentiate polymorphism, hydrate formation, and solvate formation as three separate 'nature of solute' issues.", "a": "Polymorphism is different crystal arrangements of the same compound; a hydrate incorporates water in the crystal; a solvate incorporates a non-water solvent in the crystal — each can change solubility independently.", "lvl": 2},
+{"c": "Solute Nature", "q": "Given that ampicillin trihydrate contains 3 water molecules, what would you expect about its solubility relative to anhydrous ampicillin?", "a": "It would be expected to be less soluble than the anhydrous form, following the general hydrate-vs-anhydrous rule.", "lvl": 2},
+{"c": "Solute Nature", "q": "Why does polymorphism potentially affect therapeutic activity, not just physical appearance?", "a": "Because different polymorphs can differ in solubility and absorption, which directly affects how much drug becomes bioavailable.", "lvl": 2},
+{"c": "pH Effects", "q": "Why do sulfonamides need a more basic environment to dissolve well?", "a": "Because they are weak acids, and raising pH converts them to their water-soluble salt form.", "lvl": 2},
+{"c": "pH Effects", "q": "Why do alkaloids need a more acidic environment to dissolve well?", "a": "Because they are weak bases, and lowering pH converts them to their water-soluble salt form.", "lvl": 2},
+{"c": "Salting In/Out", "q": "Conceptually, how do salting-in and salting-out differ in the type of solute solution involved?", "a": "Salting-in acts on a non-electrolyte solution; salting-out acts on a slightly soluble salt (electrolyte) solution sharing a common ion with the added salt.", "lvl": 2},
+{"c": "Salting In/Out", "q": "Why is CaSO4 vulnerable to salting-out by Na2SO4?", "a": "Because both share the common sulfate (SO4²⁻) ion, so adding Na2SO4 shifts CaSO4's equilibrium toward precipitation.", "lvl": 2},
+{"c": "Salting In/Out", "q": "In the NaCl + AgCl example, why is the sodium ion (Na⁺) not responsible for the precipitation?", "a": "Because it is not a common ion with AgCl — only the shared Cl⁻ ion drives the common-ion (salting-out) effect.", "lvl": 2},
+{"c": "Dissolution Rate", "q": "Explain how agitation's mechanism relates to the concept of a concentration boundary layer at the solute's surface.", "a": "Without agitation, a saturated layer builds up right at the solute surface, slowing further dissolution; agitation continuously replaces it with fresh solvent, maintaining a steeper concentration gradient.", "lvl": 2},
+{"c": "Dissolution Rate", "q": "Why doesn't a faster dissolution rate guarantee a higher equilibrium solubility?", "a": "Because rate is a kinetic (speed) property while solubility is a thermodynamic (equilibrium) property — you can reach the same maximum faster or slower, but the maximum itself doesn't change.", "lvl": 2},
+{"c": "Structure", "q": "Why are non-polar solvents required for non-polar solutes?", "a": "Because 'like dissolves like' — non-polar solutes lack the dipole or ionic character needed to interact favorably with polar solvent molecules.", "lvl": 2},
+{"c": "Gas Solubility", "q": "Under Henry's Law, what variable must be held constant for solubility to be proportional to pressure?", "a": "Temperature.", "lvl": 2},
+{"c": "Solute Nature", "q": "List, in order, the four techniques for studying crystal/polymorph properties as given in the lecture.", "a": "Hot stage microscopy, thermal analysis, infrared spectroscopy, and X-ray diffraction.", "lvl": 2},
+{"c": "Factors", "q": "Which two of the five solubility factors deal most directly with the solute's own chemistry rather than the surrounding solution?", "a": "Molecular structure and nature of the solute (e.g., polymorphism, hydrates, solvates).", "lvl": 2},
+{"c": "Temperature", "q": "What determines whether increasing temperature raises or lowers a solid's solubility?", "a": "The sign of its heat of solution — positive (endothermic) raises solubility, negative (exothermic) lowers it.", "lvl": 2},
+{"c": "Saturation", "q": "Why is a supersaturated solution considered thermodynamically unstable, and what commonly triggers it to return to equilibrium?", "a": "It holds more solute than the solvent can normally sustain at that temperature, so it is metastable; introducing a seed crystal or disturbance (e.g. scratching, shock) triggers excess solute to crystallize out until the solution returns to a saturated state.", "lvl": 3},
+{"c": "Numeric Application", "q": "A solute needs 240 mL of solvent to dissolve 3 g. Classify its solubility.", "a": "240 ÷ 3 = 80 parts solvent per part solute → sparingly soluble (30–100 range).", "lvl": 3},
+{"c": "Numeric Application", "q": "A solute needs 600 mL of solvent to dissolve 0.5 g. Classify its solubility.", "a": "600 ÷ 0.5 = 1200 parts solvent per part solute → very slightly soluble (1000–10,000 range).", "lvl": 3},
+{"c": "Numeric Application", "q": "A solute needs 15 mL of solvent to dissolve 10 g. Classify its solubility.", "a": "15 ÷ 10 = 1.5 parts solvent per part solute → freely soluble (1–10 range).", "lvl": 3},
+{"c": "Numeric Application", "q": "A solute needs 1 mL of solvent to dissolve 2 g. Classify its solubility.", "a": "1 ÷ 2 = 0.5 parts solvent per part solute → very soluble (<1 range).", "lvl": 3},
+{"c": "Numeric Application", "q": "A solute needs 3500 parts of solvent per part of solute. Which category, and which two categories does that value sit between?", "a": "Very slightly soluble — it sits between the 1000-part lower boundary and the 10,000-part upper boundary of that range.", "lvl": 3},
+{"c": "Integration", "q": "Predict the net effect on dissolution rate if particle size is reduced but the suspension is simultaneously cooled.", "a": "Reducing particle size increases surface area and speeds dissolution, while cooling (for most solids) slows the frequency of solvent–solute collisions and can lower solubility — the two effects act in opposite directions, so the net outcome depends on which factor dominates and must be evaluated case by case.", "lvl": 3},
+{"c": "Integration", "q": "Using Henry's Law and the temperature effect on gases, explain why a warmed carbonated drink loses fizz faster than a cold one.", "a": "As temperature rises, CO2's solubility in the liquid decreases (per the lecture's 0°C vs 20°C example), so dissolved CO2 is released as gas more readily, causing faster loss of carbonation.", "lvl": 3},
+{"c": "Integration", "q": "Extend the salting-out concept: predict what happens if Na2SO4 is added to a saturated BaSO4 solution.", "a": "Na2SO4 shares the common sulfate ion with BaSO4, so it will cause further precipitation of BaSO4 — a salting-out (solubility-decreasing) effect, just like the NaCl + AgCl example.", "lvl": 3},
+{"c": "Integration", "q": "Is adding NaCl to a saturated CaSO4 solution a true 'salting-in' scenario? Justify.", "a": "No — salting-in is defined for adding an electrolyte to a NON-electrolyte solution. CaSO4 is itself a (slightly soluble) electrolyte, so NaCl added to it does not fit the salting-in definition, even though NaCl and CaSO4 share no common ion.", "lvl": 3},
+{"c": "Integration", "q": "A weak acidic drug also exists as a hydrate. Propose two independent strategies from the lecture to increase its solubility.", "a": "(1) Raise the pH with base to form a water-soluble salt of the weak acid; (2) use the anhydrous form instead of the hydrate form, since anhydrous forms are generally more soluble.", "lvl": 3},
+{"c": "Integration", "q": "Explain mechanistically why a semipolar solvent like ethanol can dissolve both polar and non-polar drugs.", "a": "Its C–O and H–O bonds provide polar character able to interact with polar/ionic solutes (via dipole or hydrogen bonding), while its C–H and C–C bonds provide a non-polar hydrocarbon character able to interact with non-polar solutes — giving it dual solvating capability.", "lvl": 3},
+{"c": "Critical Thinking", "q": "Is rate of dissolution a thermodynamic or a kinetic property? How does this explain why it can rise without solubility rising?", "a": "It is a kinetic property (how fast equilibrium is approached), whereas solubility is a thermodynamic/equilibrium property (the maximum achievable concentration) — speeding up the approach to equilibrium via particle size, agitation, or heat doesn't change where that equilibrium point is.", "lvl": 3},
+{"c": "Integration", "q": "A drug has a negative heat of solution and the pharmacist both heats and agitates its suspension. What happens to solubility versus dissolution rate?", "a": "Heating lowers its equilibrium solubility (since dissolution is exothermic), while both heating and agitation still raise the rate at which it approaches whatever solubility limit currently applies — so the maximum amount dissolvable may fall even as it dissolves faster toward that (lower) limit.", "lvl": 3},
+{"c": "Integration", "q": "Why might a 'practically insoluble' drug (>10,000 parts solvent) still show clinically meaningful dissolution in the GI tract?", "a": "Because in vivo conditions provide continuous agitation (peristalsis) and, if the drug is micronized, greatly increased surface area — both of which raise the rate of dissolution even though the equilibrium solubility itself remains very low.", "lvl": 3},
+{"c": "Integration", "q": "Propose two independent strategies, from different lecture factors, to maximize both solubility and dissolution rate of a practically insoluble weak acid drug.", "a": "Raise the pH (an 'effect of pH' strategy) to increase equilibrium solubility via salt formation, and reduce particle size (a 'rate of dissolution' strategy) to increase surface area and speed of dissolution — two different mechanisms acting together.", "lvl": 3},
+{"c": "Critical Thinking", "q": "Why is NaCl simultaneously a poor example for temperature-solubility teaching but a good example for the 'neither exo/endothermic' category?", "a": "Its solubility changes so little with temperature that it can't illustrate typical endothermic/exothermic behavior, but that very stability is exactly what defines and demonstrates the third, less common temperature category.", "lvl": 3},
+{"c": "Integration", "q": "For a poorly soluble weak base drug, propose two combined strategies (from pH effects and nature-of-solute effects) to enhance its dissolution.", "a": "Lower the pH with acid to form a water-soluble salt of the weak base, and select a solvate form of the compound over the non-solvate form, since solvates are generally more soluble.", "lvl": 3},
+{"c": "Critical Thinking", "q": "Does increasing agitation change the equilibrium solubility value itself, or only the time needed to reach it? Justify.", "a": "Only the time to reach it — agitation is a kinetic (rate) factor that refreshes solvent at the solute surface, but the maximum amount that can ultimately dissolve (solubility) is an equilibrium property unaffected by stirring.", "lvl": 3},
+{"c": "Critical Thinking", "q": "How does reducing particle size relate to dissolution rate — is the relationship about surface area, particle count, or both?", "a": "Primarily surface area: reducing particle size increases the total surface area exposed to solvent for the same mass of solute, which is what accelerates the rate of dissolution.", "lvl": 3},
+{"c": "Integration", "q": "If a seed crystal is dropped into a supersaturated solution, what happens and why?", "a": "The seed crystal provides a nucleation site, triggering rapid crystallization of the excess dissolved solute until the solution returns to a normal saturated equilibrium.", "lvl": 3},
+{"c": "Critical Thinking", "q": "Would a semipolar solvent like ethanol be an ideal universal solvent for both a highly ionic salt and a purely non-polar oil? Explain the limits.", "a": "Not ideal for either extreme — its polar C–O/H–O character helps somewhat with ionic solutes but is weaker than water's, and its non-polar C–H/C–C character helps somewhat with oils but is weaker than a true non-polar solvent's; it performs best as an intermediate 'bridging' solvent rather than excelling at either extreme.", "lvl": 3},
+{"c": "Integration", "q": "A weak acid drug is both endothermic in its heat of solution and has its pH raised above the threshold where salts form. Predict the combined effect on solubility.", "a": "Both effects act in the same direction — raising temperature increases solubility (endothermic) and raising pH increases solubility (salt formation) — so the combined effect is an even greater increase in solubility.", "lvl": 3},
+{"c": "Integration", "q": "A weak base drug is exothermic in its heat of solution, and its pH is raised (moved away from its acidic solubility zone). Predict the combined effect on solubility.", "a": "Both effects act to decrease solubility — raising temperature lowers solubility (exothermic) and raising pH moves a weak base away from the acidic conditions needed for salt formation — so solubility falls on both counts.", "lvl": 3},
+{"c": "Critical Thinking", "q": "Why are a drug's polymorph, hydrate/solvate state, and pH-solubility profile all considered essential preformulation studies?", "a": "Because each independently governs how much drug dissolves and how fast — an inactive polymorph, a poorly soluble hydrate, or a pH outside the salt-forming range can each undermine bioavailability even if the chemical identity of the drug is correct.", "lvl": 3},
+{"c": "Critical Thinking", "q": "A suspension settles out at room temperature but redissolves on warming. Which temperature-solubility category does this most likely represent?", "a": "An endothermic dissolution with a positive heat of solution — solubility rises as temperature rises.", "lvl": 3},
+{"c": "Critical Thinking", "q": "The lecture gives two definitions of solubility. Which one is more quantitative, and which is more conceptual?", "a": "'Maximum concentration to which a solution may be prepared with that agent and solvent' is the quantitative definition; 'the ability of a solute to form a solution with a solvent' is the more general, conceptual definition.", "lvl": 3},
+{"c": "Integration", "q": "Which polymorph-detection method would most directly reveal a melting-point difference between two polymorphs?", "a": "Hot stage microscopy (or thermal analysis), since both directly observe or measure thermal/melting behavior.", "lvl": 3},
+{"c": "Integration", "q": "Which polymorph-detection method would most directly reveal a difference in functional-group bonding between two polymorphs?", "a": "Infrared spectroscopy, since it probes molecular vibrational bonds.", "lvl": 3},
+{"c": "Integration", "q": "Which polymorph-detection method would most directly reveal a difference in crystal lattice arrangement between two polymorphs?", "a": "X-ray diffraction, since it resolves the internal crystal structure.", "lvl": 3},
+{"c": "Critical Thinking", "q": "If a hydrate is less soluble than its anhydrous form, what does that imply for designing a fast-dissolving oral tablet?", "a": "The anhydrous form would generally be preferred in the formulation, since it is expected to dissolve to a greater extent and more readily than the hydrate form.", "lvl": 3},
+{"c": "Critical Thinking", "q": "If a solvate is more soluble than its non-solvate form, is choosing the solvate always the right formulation decision? What must be weighed?", "a": "Not necessarily — while the solvate offers a solubility advantage, the incorporated non-water solvent may raise toxicology, residual-solvent, or regulatory concerns that must be weighed against the solubility benefit.", "lvl": 3},
+{"c": "Critical Thinking", "q": "Why does the salting-in definition specifically require the additive to be an electrolyte and the target solution to be a non-electrolyte?", "a": "Because salting-in describes how ions from the added electrolyte alter the solvent's structure/activity to favor dissolving a non-ionic solute; if the target solution were itself an electrolyte, the interaction would instead fall under common-ion (salting-out) behavior rather than salting-in.", "lvl": 3},
+{"c": "Critical Thinking", "q": "How does the common-ion (salting-out) effect connect to the broader equilibrium principle of Le Chatelier?", "a": "Adding more of a common ion shifts the dissolution equilibrium of the slightly soluble salt back toward the solid (undissolved) side, exactly as Le Chatelier's principle predicts for a system responding to increased product-side concentration.", "lvl": 3},
+{"c": "Integration", "q": "Compare the expected dissolution behavior of a coarse, unagitated, room-temperature suspension versus a micronized, agitated, heated suspension of the same poorly soluble drug.", "a": "The micronized, agitated, heated suspension will dissolve far faster, since all three dissolution-rate factors (smaller particle size for more surface area, agitation for fresh solvent contact, and heat for more frequent collisions) act together to accelerate it, whereas the coarse, still, cool suspension has none of these advantages.", "lvl": 3},
+{"c": "Critical Thinking", "q": "Of the five factors affecting solid-in-liquid solubility, which is most directly relevant when formulating weak-acid or weak-base drugs specifically, and why?", "a": "Effect of pH — because weak acids and weak bases form water-soluble salts specifically in response to pH changes, making pH control the most direct lever for their solubility, even though molecular structure and nature of the solute remain relevant in general.", "lvl": 3},
+{"c": "Critical Thinking", "q": "Why does the lecture emphasize that increased dissolution rate does not always mean increased solubility, using an asymmetric (one-way) relationship?", "a": "Because solubility increases always speed up dissolution (more solute can leave the surface per unit time), but dissolution rate can also be boosted independently by particle size, agitation, or heat — factors that change kinetics without necessarily changing the equilibrium solubility value itself.", "lvl": 3},
+{"c": "Integration", "q": "A drug is both a weak acid and forms an inactive polymorph under certain crystallization conditions. What two separate quality issues must formulators control for?", "a": "(1) pH control to ensure the drug remains in its water-soluble salt form for adequate solubility, and (2) polymorph control (via methods like hot stage microscopy, thermal analysis, IR, or X-ray diffraction) to ensure the active, not inactive, polymorph is present.", "lvl": 3},
+{"c": "Critical Thinking", "q": "Explain why 'like dissolves like' is really a structural, not just polarity-based, principle when applied to semipolar molecules like ethanol.", "a": "Because ethanol's dissolving power comes from having distinct bond regions of differing polarity within one molecule (non-polar C–H/C–C vs polar C–O/H–O), rather than from a single uniform polarity — its structure, not just an overall 'polar' or 'non-polar' label, explains its versatility.", "lvl": 3},
+{"c": "Integration", "q": "Explain why raising phenobarbital's pH above 5.5 and simultaneously choosing its solvate form (if available) would have a compounding effect on solubility.", "a": "Both act through different, additive mechanisms — pH elevation increases solubility via water-soluble salt formation, while the solvate form is inherently more soluble than the non-solvate crystal form, so combining them would push solubility higher than either alone.", "lvl": 3}
+
+];
+
+let fcLevel = 1;
+let fcFiltered = flashcards.filter(f=>f.lvl===fcLevel);
+let fcIndex = 0;
+
+function fcLevelPool(){
+  return flashcards.filter(f=>f.lvl===fcLevel);
+}
+function populateFcFilter(){
+  const pool = fcLevelPool();
+  const cats = ["All", ...new Set(pool.map(f=>f.c))];
+  const sel = document.getElementById("fc-filter");
+  const prevVal = sel.value && cats.includes(sel.value) ? sel.value : "All";
+  sel.innerHTML = cats.map(c=>`<option value="${c}">${c}</option>`).join("");
+  sel.value = prevVal;
+  fcFiltered = prevVal==="All" ? [...pool] : pool.filter(f=>f.c===prevVal);
+}
+document.getElementById("fc-filter").addEventListener("change", ()=>{
+  const sel = document.getElementById("fc-filter");
+  const pool = fcLevelPool();
+  fcFiltered = sel.value==="All" ? [...pool] : pool.filter(f=>f.c===sel.value);
+  fcIndex = 0;
+  renderFc();
+});
+document.querySelectorAll("#fc-level-row .lvl-chip").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    fcLevel = parseInt(btn.dataset.lvl,10);
+    document.querySelectorAll("#fc-level-row .lvl-chip").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    populateFcFilter();
+    fcIndex = 0;
+    renderFc();
+  });
+});
+function renderFc(){
+  const card = document.getElementById("fc-card");
+  card.classList.remove("flipped");
+  const item = fcFiltered[fcIndex];
+  document.getElementById("fc-question").textContent = item.q;
+  document.getElementById("fc-answer").textContent = item.a;
+  document.getElementById("fc-tag-front").textContent = item.c.toUpperCase();
+  document.getElementById("fc-tag-back").textContent = "ANSWER";
+  document.getElementById("fc-count").textContent = (fcIndex+1) + " / " + fcFiltered.length;
+}
+document.getElementById("fc-card").addEventListener("click", ()=>{
+  document.getElementById("fc-card").classList.toggle("flipped");
+});
+document.getElementById("fc-prev").addEventListener("click", ()=>{
+  fcIndex = (fcIndex - 1 + fcFiltered.length) % fcFiltered.length;
+  renderFc();
+});
+document.getElementById("fc-next").addEventListener("click", ()=>{
+  fcIndex = (fcIndex + 1) % fcFiltered.length;
+  renderFc();
+});
+document.getElementById("fc-shuffle").addEventListener("click", ()=>{
+  fcFiltered = shuffleArray(fcFiltered);
+  fcIndex = 0;
+  renderFc();
+});
+function shuffleArray(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+document.querySelector('#fc-level-row .lvl-chip[data-lvl="1"]').classList.add("active");
+populateFcFilter();
+renderFc();
+
+/* ============================================================
+   QUIZ DATA (150 questions — 3 difficulty levels)
+============================================================ */
+const quizBank = [
+{"q": "What does the solubility of an agent in a solvent indicate?", "options": ["The color it produces", "The maximum concentration to which a solution may be prepared", "The boiling point of the mixture", "The rate of a chemical reaction"], "correct": "The maximum concentration to which a solution may be prepared", "lvl": 1},
+{"q": "Which is the alternative (OR) definition of solubility given in the lecture?", "options": ["The ability of a solute to form a solution with a solvent", "The weight of solute per liter", "The melting point of a solute", "The viscosity of a solvent"], "correct": "The ability of a solute to form a solution with a solvent", "lvl": 1},
+{"q": "When excess solid is shaken with a liquid until a maximum amount dissolves, this is called:", "options": ["Unsaturated solubility", "Saturated solubility", "Supersaturated solubility", "Relative solubility"], "correct": "Saturated solubility", "lvl": 1},
+{"q": "A supersaturated solution is usually prepared by:", "options": ["Filtering a solution", "Heating, dissolving excess solute, then cooling", "Adding more solvent only", "Freezing the solvent"], "correct": "Heating, dissolving excess solute, then cooling", "lvl": 1},
+{"q": "How many factors affect the solubility of a solid in a liquid, per the lecture?", "options": ["Three", "Four", "Five", "Six"], "correct": "Five", "lvl": 1},
+{"q": "Which of these is NOT one of the five factors affecting solubility of a solid in a liquid?", "options": ["Temperature", "Effect of molecular structure", "Effect of pH", "Atmospheric pressure"], "correct": "Atmospheric pressure", "lvl": 1},
+{"q": "In an endothermic reaction, increasing temperature:", "options": ["Increases solubility", "Decreases solubility", "Has no effect", "Causes precipitation"], "correct": "Increases solubility", "lvl": 1},
+{"q": "In an exothermic reaction, increasing temperature:", "options": ["Increases solubility", "Decreases solubility", "Doubles solubility", "Has no effect"], "correct": "Decreases solubility", "lvl": 1},
+{"q": "A 'positive heat of solution' is associated with:", "options": ["Exothermic dissolution", "Endothermic dissolution", "Neutral dissolution", "Gas dissolution only"], "correct": "Endothermic dissolution", "lvl": 1},
+{"q": "A 'negative heat of solution' is associated with:", "options": ["Exothermic dissolution", "Endothermic dissolution", "Supersaturation only", "Polymorphism"], "correct": "Exothermic dissolution", "lvl": 1},
+{"q": "Which compound is given as an example of neither exothermic nor endothermic dissolution?", "options": ["AgCl", "NaCl", "CaSO4", "Phenobarbital"], "correct": "NaCl", "lvl": 1},
+{"q": "Polar liquids are miscible with:", "options": ["Non-polar liquids only", "Other polar liquids, but only slightly with non-polar liquids", "No liquids", "Gases only"], "correct": "Other polar liquids, but only slightly with non-polar liquids", "lvl": 1},
+{"q": "Polar liquids dissolve which type of compounds well?", "options": ["Electrovalent (ionic) compounds", "Pure hydrocarbons", "Noble gases", "Waxes"], "correct": "Electrovalent (ionic) compounds", "lvl": 1},
+{"q": "As the molecular weight of an alcohol increases, its solubility in water:", "options": ["Increases", "Decreases", "Stays the same", "Becomes infinite"], "correct": "Decreases", "lvl": 1},
+{"q": "Why is water a poor solvent for non-polar substances?", "options": ["It is a poor solvent for everything", "It readily dissolves salts and electrolytes instead", "It has a very high boiling point", "It is always frozen"], "correct": "It readily dissolves salts and electrolytes instead", "lvl": 1},
+{"q": "Non-polar solutes require:", "options": ["Polar solvents", "Non-polar solvents", "Only water", "Only acids"], "correct": "Non-polar solvents", "lvl": 1},
+{"q": "Which liquid is given as the lecture's example of a semipolar liquid?", "options": ["Water", "Ethyl alcohol", "Hexane", "Benzene"], "correct": "Ethyl alcohol", "lvl": 1},
+{"q": "How many non-polar carbon–hydrogen bonds does ethanol have?", "options": ["3", "4", "5", "6"], "correct": "5", "lvl": 1},
+{"q": "The single C–C bond in ethanol is:", "options": ["Polar", "Non-polar", "Ionic", "A hydrogen bond"], "correct": "Non-polar", "lvl": 1},
+{"q": "Which bonds in ethanol are polar?", "options": ["C–H bonds only", "C–C bond only", "C–O and H–O bonds", "All bonds equally"], "correct": "C–O and H–O bonds", "lvl": 1},
+{"q": "Polymorphism is defined as:", "options": ["A compound existing in more than one form with the same chemical structure but different physical properties", "Two unrelated compounds with similar names", "A mixture of two solvents", "A type of chemical bond"], "correct": "A compound existing in more than one form with the same chemical structure but different physical properties", "lvl": 1},
+{"q": "Which physical property is NOT listed as varying between polymorphs?", "options": ["Melting point", "Solubility", "Molecular weight", "Therapeutic activity"], "correct": "Molecular weight", "lvl": 1},
+{"q": "Which drug is the lecture's classic example of active vs. inactive polymorphs?", "options": ["Ampicillin", "Chloramphenicol", "Phenobarbital", "Sulfonamide"], "correct": "Chloramphenicol", "lvl": 1},
+{"q": "Which of these is NOT one of the four methods listed for determining crystal properties?", "options": ["Hot stage microscopy", "Thermal analysis", "Titration", "X-ray diffraction"], "correct": "Titration", "lvl": 1},
+{"q": "Hydrates are compounds that:", "options": ["Contain no water", "Contain water within their crystals", "Are always gases", "Cannot be crystallized"], "correct": "Contain water within their crystals", "lvl": 1},
+{"q": "How many water molecules does ampicillin trihydrate contain?", "options": ["1", "2", "3", "4"], "correct": "3", "lvl": 1},
+{"q": "Which form is generally more soluble: anhydrous or hydrate?", "options": ["Hydrate", "Anhydrous", "They are always equal", "Neither dissolves"], "correct": "Anhydrous", "lvl": 1},
+{"q": "A solvate is a compound whose crystal contains:", "options": ["Only water", "A solvent other than water", "No solvent", "Only air"], "correct": "A solvent other than water", "lvl": 1},
+{"q": "Which form is generally more soluble in water: solvate or non-solvate?", "options": ["Non-solvate", "Solvate", "Always equal", "Neither"], "correct": "Solvate", "lvl": 1},
+{"q": "Organic substances are generally classified as:", "options": ["Strong acids or strong bases", "Weak acids or weak bases", "Only neutral compounds", "Only salts"], "correct": "Weak acids or weak bases", "lvl": 1},
+{"q": "Sulfonamides are given as an example of:", "options": ["Weak organic acids", "Weak organic bases", "Strong acids", "Non-electrolytes"], "correct": "Weak organic acids", "lvl": 1},
+{"q": "Alkaloids are given as an example of:", "options": ["Weak organic acids", "Weak organic bases", "Neutral salts", "Gases"], "correct": "Weak organic bases", "lvl": 1},
+{"q": "Raising pH by adding base increases the solubility of weak organic acids because it forms:", "options": ["Insoluble precipitates", "Water-soluble salts", "Gaseous byproducts", "Polymorphs"], "correct": "Water-soluble salts", "lvl": 1},
+{"q": "Lowering pH by adding acid increases the solubility of weak organic bases because it forms:", "options": ["Water-soluble salts", "Insoluble oxides", "Polymorphs", "Hydrates"], "correct": "Water-soluble salts", "lvl": 1},
+{"q": "Above what pH does phenobarbital's solubility increase upon addition of strong base?", "options": ["3.5", "4.5", "5.5", "6.5"], "correct": "5.5", "lvl": 1},
+{"q": "If the pH of a phenobarbital solution is decreased with strong acid, what happens?", "options": ["It becomes supersaturated", "The free acid precipitates", "It boils", "It becomes a gas"], "correct": "The free acid precipitates", "lvl": 1},
+{"q": "Salting-in is defined as:", "options": ["Adding a common-ion salt to precipitate a compound", "Adding an electrolyte to a non-electrolyte solution, increasing solubility", "Removing salt from solution", "Cooling a saturated solution"], "correct": "Adding an electrolyte to a non-electrolyte solution, increasing solubility", "lvl": 1},
+{"q": "Salting-out is defined as:", "options": ["Increasing solubility by heating", "Adding a common-ion salt to a slightly soluble salt's solution, causing precipitation", "Dissolving a gas in a liquid", "Forming a supersaturated solution"], "correct": "Adding a common-ion salt to a slightly soluble salt's solution, causing precipitation", "lvl": 1},
+{"q": "In the lecture's salting-out example, which salt is added to a saturated AgCl solution?", "options": ["KI", "NaCl", "Na2SO4", "BaCl2"], "correct": "NaCl", "lvl": 1},
+{"q": "Which ion is the 'common ion' that causes AgCl to precipitate in that example?", "options": ["Na+", "Ag+", "Cl-", "NO3-"], "correct": "Cl-", "lvl": 1},
+{"q": "Which of these is listed as a slightly soluble salt affected by salting-out?", "options": ["NaCl", "KI", "BaSO4", "NaNO2"], "correct": "BaSO4", "lvl": 1},
+{"q": "According to the relative-terms table, 'very soluble' means requiring:", "options": ["Less than 1 part solvent per part solute", "1–10 parts solvent", "10–30 parts solvent", "More than 10,000 parts solvent"], "correct": "Less than 1 part solvent per part solute", "lvl": 1},
+{"q": "'Freely soluble' corresponds to how many parts of solvent per part of solute?", "options": ["<1", "1–10", "10–30", "30–100"], "correct": "1–10", "lvl": 1},
+{"q": "'Soluble' corresponds to how many parts of solvent per part of solute?", "options": ["1–10", "10–30", "30–100", "100–1000"], "correct": "10–30", "lvl": 1},
+{"q": "'Sparingly soluble' corresponds to how many parts of solvent per part of solute?", "options": ["10–30", "30–100", "100–1000", "1000–10,000"], "correct": "30–100", "lvl": 1},
+{"q": "'Slightly soluble' corresponds to how many parts of solvent per part of solute?", "options": ["30–100", "100–1000", "1000–10,000", ">10,000"], "correct": "100–1000", "lvl": 1},
+{"q": "'Very slightly soluble' corresponds to how many parts of solvent per part of solute?", "options": ["100–1000", "1000–10,000", ">10,000", "<1"], "correct": "1000–10,000", "lvl": 1},
+{"q": "A compound needing more than 10,000 parts of solvent per part of solute is termed:", "options": ["Sparingly soluble", "Slightly soluble", "Practically insoluble", "Freely soluble"], "correct": "Practically insoluble", "lvl": 1},
+{"q": "According to the lecture, 1 g of NaCl dissolves in how much water?", "options": ["0.5 mL", "2.8 mL", "10 mL", "100 mL"], "correct": "2.8 mL", "lvl": 1},
+{"q": "Based on the 2.8 mL/g figure, NaCl is classified as:", "options": ["Very soluble", "Freely soluble", "Sparingly soluble", "Practically insoluble"], "correct": "Freely soluble", "lvl": 1},
+{"q": "Henry's Law states that gas solubility in a liquid, at constant temperature, is:", "options": ["Inversely proportional to pressure", "Proportional to pressure", "Unrelated to pressure", "Proportional to volume only"], "correct": "Proportional to pressure", "lvl": 1},
+{"q": "Increasing temperature has what general effect on gas solubility?", "options": ["Increases it", "Decreases it", "No effect", "Always doubles it"], "correct": "Decreases it", "lvl": 1},
+{"q": "CO2 is about how many times more soluble at 0°C compared with 20°C?", "options": ["Half", "The same", "Twice", "Four times"], "correct": "Twice", "lvl": 1},
+{"q": "Rate of dissolution is best defined as:", "options": ["The maximum amount a solvent can hold", "The speed at which solute goes into solution", "The pH of a solution", "The melting point of a solute"], "correct": "The speed at which solute goes into solution", "lvl": 1},
+{"q": "The formula for rate of dissolution is:", "options": ["ΔT/ΔC", "ΔC/ΔT", "C × T", "C ÷ V"], "correct": "ΔC/ΔT", "lvl": 1},
+{"q": "Which of these is NOT one of the three factors affecting rate of dissolution listed in the lecture?", "options": ["Particle size", "Agitation", "Heating", "Color of the solute"], "correct": "Color of the solute", "lvl": 1},
+{"q": "Reducing particle size affects dissolution rate by:", "options": ["Decreasing surface area", "Increasing surface area, speeding dissolution", "Lowering temperature", "Changing chemical structure"], "correct": "Increasing surface area, speeding dissolution", "lvl": 1},
+{"q": "Agitation increases dissolution rate mainly by:", "options": ["Raising the melting point", "Replacing the concentrated layer near the solute with fresh solvent", "Lowering pH", "Forming polymorphs"], "correct": "Replacing the concentrated layer near the solute with fresh solvent", "lvl": 1},
+{"q": "Heating increases dissolution rate by:", "options": ["Reducing surface area", "Increasing the frequency of solvent-solute collisions", "Decreasing molecular motion", "Forming hydrates"], "correct": "Increasing the frequency of solvent-solute collisions", "lvl": 1},
+{"q": "If solubility increases, what generally happens to the rate of dissolution?", "options": ["It always decreases", "It also increases", "It stays fixed", "It becomes negative"], "correct": "It also increases", "lvl": 1},
+{"q": "Which statement best distinguishes a saturated from a supersaturated solution?", "options": ["A saturated solution holds the maximum solute at equilibrium; a supersaturated one holds even more, prepared by heating, dissolving extra solute, then cooling", "They are identical states", "A supersaturated solution always has less solute than a saturated one", "Saturation only applies to gases"], "correct": "A saturated solution holds the maximum solute at equilibrium; a supersaturated one holds even more, prepared by heating, dissolving extra solute, then cooling", "lvl": 2},
+{"q": "Why does NaCl's solubility barely change with temperature compared to most salts?", "options": ["It is always insoluble", "It falls into the neither-exothermic-nor-endothermic category", "It is a gas at room temperature", "It only dissolves in ethanol"], "correct": "It falls into the neither-exothermic-nor-endothermic category", "lvl": 2},
+{"q": "Why does increasing an alcohol's molecular weight decrease its water solubility?", "options": ["The non-polar hydrocarbon portion grows, lowering overall polarity", "The alcohol becomes ionic", "Its melting point drops sharply", "Water becomes less polar"], "correct": "The non-polar hydrocarbon portion grows, lowering overall polarity", "lvl": 2},
+{"q": "Why is water a poor solvent for non-polar substances despite dissolving many other things well?", "options": ["Its strong polarity favors ionic/electrolyte interactions, not non-polar ones", "It has no dissolving power at all", "It only dissolves gases", "It reacts chemically with non-polar molecules"], "correct": "Its strong polarity favors ionic/electrolyte interactions, not non-polar ones", "lvl": 2},
+{"q": "Why can ethanol, a semipolar liquid, dissolve substances that pure polar or pure non-polar solvents cannot?", "options": ["It has both polar (C–O, H–O) and non-polar (C–H, C–C) character", "It is a strong acid", "It has no bonds at all", "It is always heated before use"], "correct": "It has both polar (C–O, H–O) and non-polar (C–H, C–C) character", "lvl": 2},
+{"q": "The lecture poses 'Why?' after stating that the anhydrous form of a compound is usually more soluble than its hydrate. What is the best explanation?", "options": ["The hydrate's lattice already incorporates water, making it less favorable to accept more water on dissolution", "Hydrates are always gases", "Anhydrous forms have no crystal structure", "Hydrates repel water completely"], "correct": "The hydrate's lattice already incorporates water, making it less favorable to accept more water on dissolution", "lvl": 2},
+{"q": "The lecture poses 'Why?' after stating that a solvate is usually more soluble than its non-solvate form. What is the best explanation?", "options": ["The solvate's lattice is already partly disrupted by the incorporated solvent, lowering the lattice energy to overcome", "Solvates contain no crystal structure", "Non-solvates always dissolve faster", "Solvates repel all solvents"], "correct": "The solvate's lattice is already partly disrupted by the incorporated solvent, lowering the lattice energy to overcome", "lvl": 2},
+{"q": "Why does polymorphism matter clinically and not just physically?", "options": ["Different polymorphs can have different therapeutic activity, as with chloramphenicol's active/inactive forms", "Polymorphs never affect drug action", "Only the color of the crystal changes", "Polymorphism only affects packaging"], "correct": "Different polymorphs can have different therapeutic activity, as with chloramphenicol's active/inactive forms", "lvl": 2},
+{"q": "What best distinguishes a hydrate from a solvate?", "options": ["A hydrate contains water in its crystal; a solvate contains a non-water solvent", "A hydrate is always a gas; a solvate is always a liquid", "They are the same thing", "A solvate never affects solubility"], "correct": "A hydrate contains water in its crystal; a solvate contains a non-water solvent", "lvl": 2},
+{"q": "What differentiates monohydrate, dihydrate, and trihydrate forms?", "options": ["The number of incorporated water molecules (1, 2, or 3)", "Their color", "Their melting point only", "Their molecular formula entirely"], "correct": "The number of incorporated water molecules (1, 2, or 3)", "lvl": 2},
+{"q": "Why does raising the pH of a sulfonamide (weak acid) increase its solubility?", "options": ["The added base reacts with it to form a water-soluble salt", "It denatures the molecule", "It lowers the boiling point", "It converts it into a gas"], "correct": "The added base reacts with it to form a water-soluble salt", "lvl": 2},
+{"q": "Why does lowering the pH of an alkaloid (weak base) increase its solubility?", "options": ["The added acid reacts with it to form a water-soluble salt", "It destroys the alkaloid", "It raises its melting point", "It has no chemical effect"], "correct": "The added acid reacts with it to form a water-soluble salt", "lvl": 2},
+{"q": "Which best summarizes phenobarbital's pH-dependent behavior?", "options": ["Above pH 5.5 solubility increases (base added); below it the free acid precipitates (acid added)", "Solubility is unaffected by pH", "It only dissolves at pH 7", "It precipitates at all pH values"], "correct": "Above pH 5.5 solubility increases (base added); below it the free acid precipitates (acid added)", "lvl": 2},
+{"q": "How does salting-in differ mechanistically from salting-out?", "options": ["Salting-in increases solubility of a non-electrolyte via an added electrolyte; salting-out precipitates a slightly soluble salt via a common ion", "They are the same process", "Salting-in always decreases solubility", "Salting-out only applies to gases"], "correct": "Salting-in increases solubility of a non-electrolyte via an added electrolyte; salting-out precipitates a slightly soluble salt via a common ion", "lvl": 2},
+{"q": "Why does adding NaCl to a saturated AgCl solution cause AgCl to precipitate?", "options": ["The added Cl⁻ common ion shifts the equilibrium toward the solid phase", "NaCl reacts chemically with silver to form a gas", "It raises the temperature of the solution", "It changes the pH dramatically"], "correct": "The added Cl⁻ common ion shifts the equilibrium toward the solid phase", "lvl": 2},
+{"q": "Which of these is a soluble salt capable of causing salting-out, per the lecture's list?", "options": ["CaSO4", "BaSO4", "NaNO2", "BiPO4"], "correct": "NaNO2", "lvl": 2},
+{"q": "Which combination of slightly soluble salts is affected by common-ion salting-out, per the lecture?", "options": ["NaCl, LiBr, KI", "CaSO4, BaSO4, BiPO4", "NH4NO3, BaCl2, MgI2", "Na2SO4, Na3PO4, NaNO2"], "correct": "CaSO4, BaSO4, BiPO4", "lvl": 2},
+{"q": "A compound needs 50 parts of solvent per part of solute. Which category does it fall into?", "options": ["Freely soluble", "Soluble", "Sparingly soluble", "Very slightly soluble"], "correct": "Sparingly soluble", "lvl": 2},
+{"q": "A compound needs 5 parts of solvent per part of solute. Which category does it fall into?", "options": ["Very soluble", "Freely soluble", "Soluble", "Sparingly soluble"], "correct": "Freely soluble", "lvl": 2},
+{"q": "A compound needs 500 parts of solvent per part of solute. Which category does it fall into?", "options": ["Sparingly soluble", "Slightly soluble", "Very slightly soluble", "Practically insoluble"], "correct": "Slightly soluble", "lvl": 2},
+{"q": "A compound needs 2000 parts of solvent per part of solute. Which category does it fall into?", "options": ["Slightly soluble", "Very slightly soluble", "Practically insoluble", "Sparingly soluble"], "correct": "Very slightly soluble", "lvl": 2},
+{"q": "Why is NaCl (2.8 mL/g) classified as 'freely soluble' rather than 'very soluble'?", "options": ["Because 2.8 parts falls within the 1–10 range, not under 1 part", "Because NaCl never dissolves", "Because the table doesn't apply to salts", "Because 2.8 mL exceeds 10,000 parts"], "correct": "Because 2.8 parts falls within the 1–10 range, not under 1 part", "lvl": 2},
+{"q": "Which statement correctly links Henry's Law and temperature for gases?", "options": ["At constant T, solubility is proportional to pressure; raising T lowers gas solubility", "At constant P, solubility is proportional to temperature only", "Gas solubility is unrelated to both pressure and temperature", "Gas solubility always increases with heat"], "correct": "At constant T, solubility is proportional to pressure; raising T lowers gas solubility", "lvl": 2},
+{"q": "What best explains why rate of dissolution differs conceptually from solubility?", "options": ["Solubility is an equilibrium (thermodynamic) value; rate of dissolution is a kinetic (speed) value", "They are exactly the same concept", "Rate of dissolution is always higher than solubility numerically", "Solubility depends only on agitation"], "correct": "Solubility is an equilibrium (thermodynamic) value; rate of dissolution is a kinetic (speed) value", "lvl": 2},
+{"q": "Why does increasing solubility always raise dissolution rate, but not vice versa?", "options": ["Dissolution rate depends on solubility plus kinetic factors like particle size, agitation, and heat, which don't change equilibrium solubility", "Because solubility and rate are unrelated", "Because dissolution rate is always constant", "Because solubility depends only on particle size"], "correct": "Dissolution rate depends on solubility plus kinetic factors like particle size, agitation, and heat, which don't change equilibrium solubility", "lvl": 2},
+{"q": "Mechanistically, why does reducing particle size increase dissolution rate?", "options": ["Smaller particles expose more surface area to solvent per unit mass", "Smaller particles become less dense", "Smaller particles change their chemical structure", "Smaller particles heat up automatically"], "correct": "Smaller particles expose more surface area to solvent per unit mass", "lvl": 2},
+{"q": "Mechanistically, why does agitation increase dissolution rate?", "options": ["It replaces the concentrated solution layer near the surface with fresh, less concentrated solvent", "It lowers the melting point of the solute", "It converts the solute into a polymorph", "It reduces the solvent's polarity"], "correct": "It replaces the concentrated solution layer near the surface with fresh, less concentrated solvent", "lvl": 2},
+{"q": "Mechanistically, why does heating increase dissolution rate?", "options": ["It increases the frequency of solvent-molecule collisions with the solute surface", "It decreases molecular motion", "It removes the common ion effect", "It reverses osmosis"], "correct": "It increases the frequency of solvent-molecule collisions with the solute surface", "lvl": 2},
+{"q": "If particle size is reduced AND the suspension is heated, what happens to dissolution rate?", "options": ["Both factors act together to increase it further", "They cancel out completely", "Only heating matters, particle size is irrelevant", "Dissolution rate always decreases"], "correct": "Both factors act together to increase it further", "lvl": 2},
+{"q": "Which factor category explains NaCl's unusual near-independence from temperature?", "options": ["Temperature — it belongs to the 'neither exo/endothermic' category", "Molecular structure", "Effect of pH", "Salting-out"], "correct": "Temperature — it belongs to the 'neither exo/endothermic' category", "lvl": 2},
+{"q": "How would water solubility likely trend across methanol, ethanol, and propanol?", "options": ["It would decrease as chain length/molecular weight increases", "It would increase as chain length increases", "It would stay exactly the same", "It would become infinite"], "correct": "It would decrease as chain length/molecular weight increases", "lvl": 2},
+{"q": "Rank from most to least soluble: sparingly soluble, freely soluble, very slightly soluble, soluble.", "options": ["Freely soluble > soluble > sparingly soluble > very slightly soluble", "Very slightly soluble > sparingly soluble > soluble > freely soluble", "Soluble > freely soluble > very slightly soluble > sparingly soluble", "They are all equal"], "correct": "Freely soluble > soluble > sparingly soluble > very slightly soluble", "lvl": 2},
+{"q": "A drug needs 15 parts of solvent per part of solute. Which category and why?", "options": ["Soluble, because 15 falls in the 10–30 range", "Freely soluble, because 15 is close to 10", "Sparingly soluble, because 15 is more than 10", "Practically insoluble, because 15 is a large number"], "correct": "Soluble, because 15 falls in the 10–30 range", "lvl": 2},
+{"q": "How do the two directions of phenobarbital's pH-solubility relationship contrast?", "options": ["Raising pH above 5.5 increases solubility via salt formation; lowering it below 5.5 precipitates the free acid", "Both raising and lowering pH increase solubility equally", "pH has no directional effect on phenobarbital", "Phenobarbital is insoluble at every pH"], "correct": "Raising pH above 5.5 increases solubility via salt formation; lowering it below 5.5 precipitates the free acid", "lvl": 2},
+{"q": "How do polymorphism, hydrate formation, and solvate formation differ as 'nature of solute' issues?", "options": ["Polymorphism is different crystal arrangements of the same compound; a hydrate incorporates water; a solvate incorporates a non-water solvent", "They are three names for the same phenomenon", "Only polymorphism affects solubility", "Hydrates and solvates are identical concepts"], "correct": "Polymorphism is different crystal arrangements of the same compound; a hydrate incorporates water; a solvate incorporates a non-water solvent", "lvl": 2},
+{"q": "Given ampicillin trihydrate contains 3 water molecules, what would you expect about its solubility relative to anhydrous ampicillin?", "options": ["It would likely be less soluble than the anhydrous form", "It would likely be more soluble than the anhydrous form", "They would be identical in solubility", "Solubility cannot be predicted at all"], "correct": "It would likely be less soluble than the anhydrous form", "lvl": 2},
+{"q": "Why might polymorphism affect a drug's therapeutic activity, not just its appearance?", "options": ["Different polymorphs can differ in solubility and absorption, affecting bioavailability", "Polymorphs always have identical bioavailability", "Only the crystal color changes therapeutic effect", "Therapeutic activity is unrelated to solubility"], "correct": "Different polymorphs can differ in solubility and absorption, affecting bioavailability", "lvl": 2},
+{"q": "Why do sulfonamides need a more basic environment to dissolve well?", "options": ["They are weak acids, and raising pH forms their water-soluble salt", "They are weak bases needing acid", "They are neutral and unaffected by pH", "They dissolve better in non-polar solvents"], "correct": "They are weak acids, and raising pH forms their water-soluble salt", "lvl": 2},
+{"q": "Why do alkaloids need a more acidic environment to dissolve well?", "options": ["They are weak bases, and lowering pH forms their water-soluble salt", "They are weak acids needing base", "They are unaffected by pH", "They dissolve only in ethanol"], "correct": "They are weak bases, and lowering pH forms their water-soluble salt", "lvl": 2},
+{"q": "How do salting-in and salting-out differ in the type of solution they act on?", "options": ["Salting-in acts on a non-electrolyte solution; salting-out acts on a slightly soluble salt (electrolyte) solution sharing a common ion", "Both act only on gases", "Salting-in only works on solids; salting-out only on liquids", "They are the same process on the same type of solution"], "correct": "Salting-in acts on a non-electrolyte solution; salting-out acts on a slightly soluble salt (electrolyte) solution sharing a common ion", "lvl": 2},
+{"q": "Why is CaSO4 vulnerable to salting-out by Na2SO4?", "options": ["They share the common sulfate (SO4²⁻) ion", "They share no ions but react chemically", "CaSO4 is a non-electrolyte", "Na2SO4 is a slightly soluble salt"], "correct": "They share the common sulfate (SO4²⁻) ion", "lvl": 2},
+{"q": "In the NaCl + AgCl example, why doesn't Na⁺ cause the precipitation?", "options": ["It is not a common ion with AgCl; only Cl⁻ is shared", "Na+ is toxic to silver", "Na+ reacts with water instead", "Sodium ions are always inert"], "correct": "It is not a common ion with AgCl; only Cl⁻ is shared", "lvl": 2},
+{"q": "How does agitation relate to the concentration layer at a solute's surface?", "options": ["It continuously replaces the saturated boundary layer with fresh solvent, maintaining a steep concentration gradient", "It has no effect on any boundary layer", "It thickens the boundary layer permanently", "It removes the solute entirely"], "correct": "It continuously replaces the saturated boundary layer with fresh solvent, maintaining a steep concentration gradient", "lvl": 2},
+{"q": "Why doesn't a faster dissolution rate guarantee higher equilibrium solubility?", "options": ["Rate is kinetic while solubility is a thermodynamic/equilibrium property, so they can be decoupled", "They are mathematically identical", "Rate always exceeds solubility in value", "Equilibrium solubility depends only on agitation"], "correct": "Rate is kinetic while solubility is a thermodynamic/equilibrium property, so they can be decoupled", "lvl": 2},
+{"q": "Why are non-polar solvents required for non-polar solutes?", "options": ["'Like dissolves like' — non-polar solutes lack dipole/ionic character to interact with polar solvents", "Non-polar solutes are always gases", "Polar solvents chemically destroy non-polar solutes", "There is no reason; any solvent works equally"], "correct": "'Like dissolves like' — non-polar solutes lack dipole/ionic character to interact with polar solvents", "lvl": 2},
+{"q": "Under Henry's Law, which variable must stay constant for solubility to be proportional to pressure?", "options": ["Volume", "Temperature", "Concentration", "pH"], "correct": "Temperature", "lvl": 2},
+{"q": "Which two of the five solubility factors deal most directly with the solute's own chemistry rather than the surrounding solution?", "options": ["Temperature and pH", "Molecular structure and nature of the solute", "Other substances and temperature", "pH and other substances"], "correct": "Molecular structure and nature of the solute", "lvl": 2},
+{"q": "What determines whether raising temperature increases or decreases a solid's solubility?", "options": ["The sign of its heat of solution (positive = increase, negative = decrease)", "The color of the solute", "The solvent's boiling point only", "The container's material"], "correct": "The sign of its heat of solution (positive = increase, negative = decrease)", "lvl": 2},
+{"q": "Why is CO2 about twice as soluble at 0°C as at 20°C, in terms of Henry's Law?", "options": ["Lower temperature favors greater gas solubility at a given pressure", "Lower temperature always lowers gas solubility", "Henry's Law only applies above room temperature", "Pressure, not temperature, explains this fully"], "correct": "Lower temperature favors greater gas solubility at a given pressure", "lvl": 2},
+{"q": "Why does the lecture single out particle size, agitation, and heating as dissolution-rate factors rather than solubility factors?", "options": ["They speed the approach toward the existing equilibrium rather than changing the equilibrium solubility value itself", "They are identical to the five solubility factors", "They only apply to gases, not solids", "They permanently increase the maximum achievable solubility"], "correct": "They speed the approach toward the existing equilibrium rather than changing the equilibrium solubility value itself", "lvl": 2},
+{"q": "A solute needs 240 mL of solvent to dissolve 3 g. What is its solubility category?", "options": ["Sparingly soluble (80 parts/g)", "Freely soluble (80 parts/g)", "Very slightly soluble (80 parts/g)", "Practically insoluble (80 parts/g)"], "correct": "Sparingly soluble (80 parts/g)", "lvl": 3},
+{"q": "A solute needs 600 mL of solvent to dissolve 0.5 g. What is its solubility category?", "options": ["Slightly soluble (1200 parts/g)", "Very slightly soluble (1200 parts/g)", "Sparingly soluble (1200 parts/g)", "Practically insoluble (1200 parts/g)"], "correct": "Very slightly soluble (1200 parts/g)", "lvl": 3},
+{"q": "A solute needs 15 mL of solvent to dissolve 10 g. What is its solubility category?", "options": ["Very soluble (1.5 parts/g)", "Freely soluble (1.5 parts/g)", "Soluble (1.5 parts/g)", "Sparingly soluble (1.5 parts/g)"], "correct": "Freely soluble (1.5 parts/g)", "lvl": 3},
+{"q": "A solute needs 1 mL of solvent to dissolve 2 g. What is its solubility category?", "options": ["Freely soluble (0.5 parts/g)", "Soluble (0.5 parts/g)", "Very soluble (0.5 parts/g)", "Sparingly soluble (0.5 parts/g)"], "correct": "Very soluble (0.5 parts/g)", "lvl": 3},
+{"q": "A compound needs 3500 parts of solvent per part of solute. Which category, and between which two boundary values does it sit?", "options": ["Very slightly soluble, between 1000 and 10,000", "Slightly soluble, between 100 and 1000", "Practically insoluble, above 10,000", "Sparingly soluble, between 30 and 100"], "correct": "Very slightly soluble, between 1000 and 10,000", "lvl": 3},
+{"q": "If particle size is reduced while the suspension is simultaneously cooled, what is the most accurate prediction for dissolution rate?", "options": ["The two effects may oppose each other (surface area up, collision frequency/solubility possibly down), so net outcome depends on which dominates", "Dissolution rate always increases regardless of cooling", "Dissolution rate always decreases regardless of particle size", "Cooling has no effect if particle size changes"], "correct": "The two effects may oppose each other (surface area up, collision frequency/solubility possibly down), so net outcome depends on which dominates", "lvl": 3},
+{"q": "Using Henry's Law and the CO2 temperature example, why does a warm carbonated drink go flat faster than a cold one?", "options": ["Higher temperature lowers CO2 solubility, so dissolved gas escapes more readily", "Higher temperature increases CO2 solubility, trapping more gas", "Temperature has no effect on dissolved gases", "Carbonation is governed only by pressure, not temperature"], "correct": "Higher temperature lowers CO2 solubility, so dissolved gas escapes more readily", "lvl": 3},
+{"q": "Extending the salting-out concept, what happens if Na2SO4 is added to a saturated BaSO4 solution?", "options": ["BaSO4 precipitates further due to the shared sulfate common ion (salting-out)", "BaSO4 becomes more soluble (salting-in)", "No change occurs since they are unrelated salts", "BaSO4 converts into a gas"], "correct": "BaSO4 precipitates further due to the shared sulfate common ion (salting-out)", "lvl": 3},
+{"q": "Is adding NaCl to a saturated CaSO4 solution a true salting-in scenario?", "options": ["No — salting-in requires the target to be a non-electrolyte, but CaSO4 is itself an electrolyte", "Yes — any electrolyte addition is salting-in by definition", "Yes — because NaCl and CaSO4 share no common ion", "No — because NaCl is never a valid salting agent"], "correct": "No — salting-in requires the target to be a non-electrolyte, but CaSO4 is itself an electrolyte", "lvl": 3},
+{"q": "For a weak acidic drug that also exists as a hydrate, which pair of strategies from the lecture would most directly increase its solubility?", "options": ["Raise pH to form a water-soluble salt, and use the anhydrous form instead of the hydrate", "Lower pH and use the hydrate form", "Add a common-ion salt and increase particle size", "Cool the solution and add more hydrate"], "correct": "Raise pH to form a water-soluble salt, and use the anhydrous form instead of the hydrate", "lvl": 3},
+{"q": "Mechanistically, why can ethanol dissolve both polar and non-polar drugs?", "options": ["Its C–O/H–O bonds interact with polar solutes while its C–H/C–C bonds interact with non-polar solutes", "It has no bonds capable of interaction", "It is purely ionic", "It is chemically identical to water"], "correct": "Its C–O/H–O bonds interact with polar solutes while its C–H/C–C bonds interact with non-polar solutes", "lvl": 3},
+{"q": "Is rate of dissolution a thermodynamic or kinetic property, and what does that imply?", "options": ["Kinetic — it can rise via particle size, agitation, or heat without changing the equilibrium solubility (a thermodynamic property)", "Thermodynamic — it always equals solubility exactly", "Kinetic — and it always changes solubility proportionally", "Thermodynamic — and it is unaffected by agitation"], "correct": "Kinetic — it can rise via particle size, agitation, or heat without changing the equilibrium solubility (a thermodynamic property)", "lvl": 3},
+{"q": "A drug with a negative heat of solution is both heated and agitated. What happens?", "options": ["Solubility (the equilibrium maximum) falls due to heating, even though the rate of approach to that lower limit still speeds up", "Solubility rises and dissolution slows down", "Both solubility and dissolution rate stay exactly the same", "Agitation reverses the exothermic effect of heating"], "correct": "Solubility (the equilibrium maximum) falls due to heating, even though the rate of approach to that lower limit still speeds up", "lvl": 3},
+{"q": "Why might a 'practically insoluble' drug still show clinically meaningful dissolution in the GI tract?", "options": ["In vivo agitation (peristalsis) and micronization can raise the rate of dissolution even though equilibrium solubility stays very low", "Practically insoluble drugs cannot dissolve under any conditions", "The stomach chemically converts the drug into a gas", "Practically insoluble simply means the drug is inactive"], "correct": "In vivo agitation (peristalsis) and micronization can raise the rate of dissolution even though equilibrium solubility stays very low", "lvl": 3},
+{"q": "Which two independent strategies, from different lecture factors, could maximize both solubility and dissolution rate of a practically insoluble weak acid drug?", "options": ["Raise the pH (increases equilibrium solubility) and reduce particle size (increases dissolution rate)", "Lower the pH and increase particle size", "Cool the solution and remove agitation", "Add a common-ion salt and increase hydration"], "correct": "Raise the pH (increases equilibrium solubility) and reduce particle size (increases dissolution rate)", "lvl": 3},
+{"q": "Why is NaCl simultaneously a poor example for typical temperature-solubility teaching but a good example for the 'neither exo/endothermic' category?", "options": ["Its solubility changes so little with temperature that it can't show typical behavior, yet that stability defines the third category", "NaCl's solubility changes dramatically with temperature", "NaCl is not actually a solid at room temperature", "NaCl never dissolves in water at all"], "correct": "Its solubility changes so little with temperature that it can't show typical behavior, yet that stability defines the third category", "lvl": 3},
+{"q": "For a poorly soluble weak base drug, which combined strategy from pH effects and nature-of-solute effects would enhance dissolution?", "options": ["Lower the pH with acid to form a water-soluble salt, and select a solvate form over the non-solvate form", "Raise the pH and select the hydrate form", "Lower the pH and select the hydrate form", "Raise the pH and select the non-solvate form"], "correct": "Lower the pH with acid to form a water-soluble salt, and select a solvate form over the non-solvate form", "lvl": 3},
+{"q": "Does increasing agitation change the equilibrium solubility itself, or only the time to reach it?", "options": ["Only the time to reach it — agitation is a kinetic factor, not an equilibrium one", "It changes the equilibrium solubility permanently", "It has no effect on either time or equilibrium", "It only affects temperature, not solubility"], "correct": "Only the time to reach it — agitation is a kinetic factor, not an equilibrium one", "lvl": 3},
+{"q": "Reducing particle size accelerates dissolution primarily because it:", "options": ["Increases the total surface area exposed to solvent for the same solute mass", "Increases the chemical reactivity of the solute", "Converts the solute into a different polymorph", "Decreases the solute's molecular weight"], "correct": "Increases the total surface area exposed to solvent for the same solute mass", "lvl": 3},
+{"q": "What happens when a seed crystal is introduced into a supersaturated solution?", "options": ["It provides a nucleation site, triggering crystallization of excess solute back toward saturated equilibrium", "Nothing happens since supersaturated solutions are always stable", "The solution becomes a gas", "It causes the solvent to evaporate instantly"], "correct": "It provides a nucleation site, triggering crystallization of excess solute back toward saturated equilibrium", "lvl": 3},
+{"q": "Would a semipolar solvent like ethanol be an ideal universal solvent for both a highly ionic salt and a purely non-polar oil?", "options": ["Not ideal for either extreme — it works best as an intermediate 'bridging' solvent", "Yes, it is equally excellent for both extremes", "No, it cannot dissolve either type at all", "Yes, because it is chemically identical to water"], "correct": "Not ideal for either extreme — it works best as an intermediate 'bridging' solvent", "lvl": 3},
+{"q": "A weak acid drug is endothermic in dissolution and its pH is raised above the salt-forming threshold. What is the combined effect on solubility?", "options": ["Both effects increase solubility, so the combined effect is an even greater increase", "The two effects cancel out exactly", "Solubility decreases due to the pH change alone", "Temperature has no relevance to weak acids"], "correct": "Both effects increase solubility, so the combined effect is an even greater increase", "lvl": 3},
+{"q": "A weak base drug is exothermic in dissolution and its pH is raised (away from its acidic solubility zone). What is the combined effect on solubility?", "options": ["Both effects act to decrease solubility", "Both effects act to increase solubility", "The effects cancel out to no net change", "Only the pH effect matters; temperature is irrelevant for bases"], "correct": "Both effects act to decrease solubility", "lvl": 3},
+{"q": "Why are a drug's polymorph, hydrate/solvate state, and pH-solubility profile all considered essential preformulation studies?", "options": ["Each independently governs how much drug dissolves and how fast, so any one of them can undermine bioavailability", "Only the polymorph matters; the others are irrelevant", "These studies only affect the drug's color and packaging", "They are studied purely for regulatory paperwork with no scientific basis"], "correct": "Each independently governs how much drug dissolves and how fast, so any one of them can undermine bioavailability", "lvl": 3},
+{"q": "A suspension settles at room temperature but redissolves on warming. Which temperature-solubility category does this best represent?", "options": ["Endothermic dissolution (positive heat of solution)", "Exothermic dissolution (negative heat of solution)", "Neither exothermic nor endothermic, like NaCl", "Gas-in-liquid dissolution under Henry's Law"], "correct": "Endothermic dissolution (positive heat of solution)", "lvl": 3},
+{"q": "Which of the lecture's two solubility definitions is more quantitative, and which is more conceptual?", "options": ["'Maximum concentration...' is quantitative; 'ability to form a solution' is conceptual", "Both definitions are equally quantitative", "'Ability to form a solution' is quantitative; the other is conceptual", "Neither definition is meaningfully different"], "correct": "'Maximum concentration...' is quantitative; 'ability to form a solution' is conceptual", "lvl": 3},
+{"q": "Which polymorph-detection method would most directly reveal a melting-point difference between two polymorphs?", "options": ["Hot stage microscopy / thermal analysis", "Infrared spectroscopy only", "X-ray diffraction only", "None of the four listed methods"], "correct": "Hot stage microscopy / thermal analysis", "lvl": 3},
+{"q": "Which polymorph-detection method would most directly reveal a difference in functional-group bonding between polymorphs?", "options": ["Infrared spectroscopy", "Hot stage microscopy", "X-ray diffraction", "Thermal analysis alone"], "correct": "Infrared spectroscopy", "lvl": 3},
+{"q": "Which polymorph-detection method would most directly reveal a difference in crystal lattice arrangement?", "options": ["X-ray diffraction", "Infrared spectroscopy", "Hot stage microscopy", "None of these can reveal lattice differences"], "correct": "X-ray diffraction", "lvl": 3},
+{"q": "If a hydrate is less soluble than its anhydrous form, what does this imply for a fast-dissolving oral tablet design?", "options": ["The anhydrous form would generally be preferred for faster, greater dissolution", "The hydrate form should always be chosen instead", "Both forms dissolve identically in tablets", "Hydrate/anhydrous status is irrelevant to tablet design"], "correct": "The anhydrous form would generally be preferred for faster, greater dissolution", "lvl": 3},
+{"q": "If a solvate is more soluble than its non-solvate form, is it always the best formulation choice?", "options": ["Not necessarily — potential toxicology or residual-solvent/regulatory concerns must be weighed against the solubility benefit", "Yes, always, with no other considerations", "No, solvates are always rejected by regulators", "Solubility is the only relevant formulation factor"], "correct": "Not necessarily — potential toxicology or residual-solvent/regulatory concerns must be weighed against the solubility benefit", "lvl": 3},
+{"q": "Why does the salting-in definition specifically require the additive to be an electrolyte and the target to be a non-electrolyte?", "options": ["If the target were itself an electrolyte, the interaction would instead be common-ion (salting-out) behavior, not salting-in", "Because electrolytes can never affect non-electrolytes", "Because salting-in only works with gases", "There is no specific reason; the terms are interchangeable"], "correct": "If the target were itself an electrolyte, the interaction would instead be common-ion (salting-out) behavior, not salting-in", "lvl": 3},
+{"q": "How does the common-ion (salting-out) effect connect to Le Chatelier's principle?", "options": ["Adding more common ion shifts the dissolution equilibrium back toward the solid (undissolved) side, exactly as Le Chatelier predicts", "Le Chatelier's principle does not apply to solubility equilibria", "Salting-out contradicts Le Chatelier's principle", "Common-ion effects are unrelated to equilibrium chemistry"], "correct": "Adding more common ion shifts the dissolution equilibrium back toward the solid (undissolved) side, exactly as Le Chatelier predicts", "lvl": 3},
+{"q": "Compare a coarse, unagitated, room-temperature suspension to a micronized, agitated, heated suspension of the same poorly soluble drug — which dissolves faster and why?", "options": ["The micronized, agitated, heated one — all three dissolution-rate factors act together to accelerate it", "The coarse, unagitated one — fewer variables means faster dissolution", "They dissolve at exactly the same rate regardless of conditions", "Neither dissolves; poorly soluble drugs never dissolve"], "correct": "The micronized, agitated, heated one — all three dissolution-rate factors act together to accelerate it", "lvl": 3},
+{"q": "Of the five factors affecting solid-in-liquid solubility, which is most directly relevant when formulating weak-acid or weak-base drugs specifically?", "options": ["Effect of pH, since salt formation is triggered by pH changes", "Effect of other substances, since it always dominates", "Temperature, since all weak acids are endothermic", "Molecular structure, since pH is irrelevant to weak acids/bases"], "correct": "Effect of pH, since salt formation is triggered by pH changes", "lvl": 3},
+{"q": "Why is the relationship between dissolution rate and solubility described as asymmetric (one-way)?", "options": ["Solubility increases always speed dissolution, but dissolution can also be sped up by particle size, agitation, or heat without changing solubility itself", "Because dissolution rate always exceeds solubility numerically", "Because solubility always exceeds dissolution rate numerically", "Because the two are entirely unrelated concepts"], "correct": "Solubility increases always speed dissolution, but dissolution can also be sped up by particle size, agitation, or heat without changing solubility itself", "lvl": 3},
+{"q": "A drug is a weak acid that also forms an inactive polymorph under certain conditions. What two separate quality issues must formulators control for?", "options": ["pH control for adequate solubility, and polymorph control to ensure the active form is present", "Only pH control matters; polymorphism is irrelevant", "Only polymorph control matters; pH is irrelevant", "Neither issue affects the drug's performance"], "correct": "pH control for adequate solubility, and polymorph control to ensure the active form is present", "lvl": 3},
+{"q": "Why is 'like dissolves like' better understood as a structural, not purely polarity-based, principle for semipolar molecules like ethanol?", "options": ["Ethanol's dissolving power comes from having distinct polar and non-polar bond regions within one molecule, not a single uniform polarity", "Because ethanol has no polar bonds at all", "Because ethanol is purely non-polar overall", "Because polarity has nothing to do with dissolving power"], "correct": "Ethanol's dissolving power comes from having distinct polar and non-polar bond regions within one molecule, not a single uniform polarity", "lvl": 3},
+{"q": "Why would raising phenobarbital's pH above 5.5 AND choosing its solvate form (if available) have a compounding effect on solubility?", "options": ["Both act through different, additive mechanisms — salt formation from pH and inherently higher solvate solubility", "They act through the exact same mechanism, so there is no added benefit", "Only the pH effect would matter; the solvate form has no effect", "Combining them would cancel out any solubility gain"], "correct": "Both act through different, additive mechanisms — salt formation from pH and inherently higher solvate solubility", "lvl": 3},
+{"q": "A pharmacist must both slow drug settling in a suspension AND ensure fast redissolution on shaking. Which lecture concepts address each need respectively?", "options": ["Preventing crystal growth relates to supersaturation stability, while shaking relates to agitation as a dissolution-rate factor", "Both needs are addressed only by changing the pH", "Both needs are addressed only by changing particle size", "Neither concept from the lecture is relevant to suspensions"], "correct": "Preventing crystal growth relates to supersaturation stability, while shaking relates to agitation as a dissolution-rate factor", "lvl": 3}
+
+];
+
+let quizOrder = [];
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+let quizLevel = 1;
+
+function showLevelSelect(){
+  document.getElementById("quiz-level-select").style.display = "block";
+  document.getElementById("quiz-active").style.display = "none";
+  document.getElementById("quiz-result").style.display = "none";
+}
+function startQuiz(level){
+  if(typeof level === "number") quizLevel = level;
+  const pool = quizBank.filter(q=>q.lvl===quizLevel);
+  quizOrder = shuffleArray(pool);
+  quizIndex = 0;
+  quizScore = 0;
+  document.getElementById("quiz-level-select").style.display = "none";
+  document.getElementById("quiz-active").style.display = "block";
+  document.getElementById("quiz-result").style.display = "none";
+  renderQuizQuestion();
+}
+document.querySelectorAll("#quiz-level-select .lvl-chip").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    startQuiz(parseInt(btn.dataset.lvl,10));
+  });
+});
+document.getElementById("quiz-change-lvl-btn").addEventListener("click", showLevelSelect);
+document.getElementById("quiz-result-change-lvl-btn").addEventListener("click", showLevelSelect);
+function renderQuizQuestion(){
+  quizAnswered = false;
+  const item = quizOrder[quizIndex];
+  const shuffledOptions = shuffleArray(item.options);
+  document.getElementById("quiz-question").textContent = item.q;
+  document.getElementById("quiz-feedback").textContent = "";
+  document.getElementById("quiz-feedback").className = "feedback-line";
+  document.getElementById("quiz-next-btn").disabled = true;
+  document.getElementById("quiz-progress-text").textContent = "Question " + (quizIndex+1) + " of " + quizOrder.length;
+  document.getElementById("quiz-score-text").textContent = "Score: " + quizScore + " / " + quizIndex;
+  document.getElementById("quiz-progress-fill").style.width = ((quizIndex)/quizOrder.length*100) + "%";
+
+  const letters = ["A","B","C","D"];
+  const optList = document.getElementById("quiz-options");
+  optList.innerHTML = "";
+  shuffledOptions.forEach((opt,i)=>{
+    const div = document.createElement("button");
+    div.className = "opt";
+    div.innerHTML = `<span class="letter">${letters[i]}</span><span>${opt}</span>`;
+    div.addEventListener("click", ()=>{
+      if(quizAnswered) return;
+      quizAnswered = true;
+      const isCorrect = opt === item.correct;
+      document.querySelectorAll(".opt").forEach(o=>o.classList.add("locked"));
+      if(isCorrect){
+        div.classList.add("correct");
+        quizScore++;
+        document.getElementById("quiz-feedback").textContent = "Correct!";
+        document.getElementById("quiz-feedback").className = "feedback-line good";
+      } else {
+        div.classList.add("wrong");
+        document.getElementById("quiz-feedback").textContent = "Not quite — correct answer highlighted.";
+        document.getElementById("quiz-feedback").className = "feedback-line bad";
+        [...optList.children].forEach((el,idx)=>{
+          if(shuffledOptions[idx] === item.correct) el.classList.add("correct");
+        });
+      }
+      document.getElementById("quiz-score-text").textContent = "Score: " + quizScore + " / " + (quizIndex+1);
+      document.getElementById("quiz-next-btn").disabled = false;
+    });
+    optList.appendChild(div);
+  });
+}
+document.getElementById("quiz-next-btn").addEventListener("click", ()=>{
+  quizIndex++;
+  if(quizIndex >= quizOrder.length){
+    document.getElementById("quiz-progress-fill").style.width = "100%";
+    document.getElementById("quiz-active").style.display = "none";
+    document.getElementById("quiz-result").style.display = "block";
+    document.getElementById("quiz-final-score").textContent = quizScore + " / " + quizOrder.length;
+    const pct = Math.round(quizScore/quizOrder.length*100);
+    let note;
+    if(pct >= 85) note = "Excellent recall — you know this lecture cold.";
+    else if(pct >= 60) note = "Solid work — a quick review of the missed points will lock it in.";
+    else note = "Worth another pass through the flash cards and diagrams before the exam.";
+    document.getElementById("quiz-final-note").textContent = note + " (" + pct + "%)";
+  } else {
+    renderQuizQuestion();
+  }
+});
+document.getElementById("quiz-restart-btn").addEventListener("click", ()=>startQuiz());
+showLevelSelect();
+</script>
+</body>
+</html>

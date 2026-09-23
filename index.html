@@ -139,6 +139,37 @@ main{padding:40px 0 80px;}
 .quickfacts li:last-child{border-bottom:none;}
 .quickfacts li::before{content:"◆";color:var(--amber);font-size:10px;margin-top:5px;}
 
+/* ---------- HIGH-YIELD ---------- */
+.hy-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:10px;}
+.hy-card{background:var(--white);border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:8px;padding:18px 20px;}
+.hy-card.trap{border-left-color:var(--brick);}
+.hy-card.number{border-left-color:var(--amber);}
+.hy-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--teal);margin-bottom:7px;display:block;}
+.hy-card.trap .hy-tag{color:var(--brick);}
+.hy-card.number .hy-tag{color:var(--amber);}
+.hy-card p{font-size:14px;color:var(--ink);line-height:1.55;}
+.hy-card b{color:var(--teal-deep);}
+.hy-legend{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:22px;font-size:12.5px;color:var(--ink-soft);}
+.hy-legend span{display:inline-flex;align-items:center;gap:6px;}
+.hy-legend i{width:10px;height:10px;border-radius:50%;display:inline-block;}
+
+/* ---------- TOPICS / GLOSSARY ---------- */
+.toc-card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:24px 26px;margin-bottom:28px;}
+.toc-list{list-style:none;padding:0;margin:0;}
+.toc-list > li{margin-bottom:16px;}
+.toc-list > li:last-child{margin-bottom:0;}
+.toc-main{font-family:var(--serif);font-size:17px;color:var(--teal-deep);font-weight:600;display:flex;gap:10px;align-items:baseline;}
+.toc-num{color:var(--amber);font-family:var(--sans);font-size:13px;font-weight:700;flex-shrink:0;}
+.toc-sub{list-style:none;margin:8px 0 0 21px;padding:0;border-left:2px solid var(--line);}
+.toc-sub li{padding:5px 0 5px 16px;font-size:14px;color:var(--ink-soft);position:relative;}
+.toc-sub li::before{content:"–";position:absolute;left:2px;color:var(--amber);}
+.toc-sub li b{color:var(--ink);}
+
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;}
+.gterm{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:15px 17px;}
+.gterm dt{font-family:var(--serif);font-weight:600;color:var(--brick);font-size:15px;margin-bottom:5px;}
+.gterm dd{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.5;}
+
 /* ---------- DIAGRAMS ---------- */
 .diagram-card{
   background:var(--white);border:1px solid var(--line);border-radius:8px;
@@ -341,6 +372,7 @@ footer{
       <div class="eyebrow">Pharmaceutical Technology I — Lecture 3</div>
       <h1>Study<br><em>Smart.</em></h1>
       <p class="lede">A compact, hands-on companion for the Solubility lecture — the definitions, the diagrams, the drills, and the recall you need before the exam.</p>
+      <p style="margin-top:14px;font-size:13px;color:#CFE0D9;">By Anmar Taha · Telegram <a href="https://t.me/AnmarTaha" target="_blank" style="color:var(--amber-soft);text-decoration:underline;">@AnmarTaha</a> · Instagram <a href="https://instagram.com/a.za18" target="_blank" style="color:var(--amber-soft);text-decoration:underline;">a.za18</a></p>
     </div>
     <svg class="hero-flask" viewBox="0 0 140 180" xmlns="http://www.w3.org/2000/svg">
       <path d="M55 10 H85 V55 L112 140 C118 158 108 168 90 168 H50 C32 168 22 158 28 140 L55 55 Z"
@@ -361,6 +393,14 @@ footer{
     <button class="tabbtn active" data-tab="overview">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5c0-1 1-2 2-2h11c1 0 1.5.5 1.5 1.5v13c0 1-.5 1.5-1.5 1.5H6c-1 0-2 1-2 2V5Z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
       Overview
+    </button>
+    <button class="tabbtn" data-tab="highyield">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 2 2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4Z"/></svg>
+      High-Yield
+    </button>
+    <button class="tabbtn" data-tab="topics">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h14v16H5z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
+      Topics &amp; Glossary
     </button>
     <button class="tabbtn" data-tab="diagrams">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V10M11 20V4M18 20v-7"/><path d="M2 20h20"/></svg>
@@ -429,6 +469,171 @@ footer{
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ============ HIGH-YIELD ============ -->
+  <section class="panel" id="panel-highyield">
+    <div class="section-head">
+      <h2>High-yield for the exam</h2>
+      <p>If you only have ten minutes before the test, this is what to reread. Teal = core concept, gold = a number worth memorizing, brick = a common trap.</p>
+    </div>
+
+    <div class="hy-legend">
+      <span><i style="background:var(--teal)"></i>Must-know concept</span>
+      <span><i style="background:var(--amber)"></i>Number to memorize</span>
+      <span><i style="background:var(--brick)"></i>Common exam trap</span>
+    </div>
+
+    <div class="hy-grid">
+      <div class="hy-card">
+        <span class="hy-tag">Definition</span>
+        <p><b>Solubility</b> = the maximum concentration of solute that a given solvent can hold at a given temperature — i.e. the solute's ability to form a solution with the solvent.</p>
+      </div>
+      <div class="hy-card trap">
+        <span class="hy-tag">Trap</span>
+        <p><b>Unsaturated vs. saturated vs. supersaturated</b> — supersaturated is NOT just "very saturated." It is made by heating, dissolving extra solute, then cooling undisturbed. It holds more solute than the temperature would normally allow.</p>
+      </div>
+      <div class="hy-card">
+        <span class="hy-tag">List to memorize in order</span>
+        <p>5 factors affecting solubility of a solid in a liquid: <b>1) Temperature 2) Molecular structure 3) Nature of solute 4) pH 5) Other substances.</b></p>
+      </div>
+      <div class="hy-card trap">
+        <span class="hy-tag">Trap</span>
+        <p><b>Endothermic ≠ Exothermic direction.</b> Endothermic dissolution (+heat of solution) → solubility ↑ with temperature. Exothermic (−heat of solution) → solubility ↓ with temperature. NaCl is the classic exception — its solubility barely changes with temperature.</p>
+      </div>
+      <div class="hy-card">
+        <span class="hy-tag">Concept</span>
+        <p><b>Like dissolves like.</b> Polar liquids dissolve electrovalent/polar compounds; non-polar liquids are needed for non-polar solutes. Ethanol is <b>semipolar</b>: 5 non-polar C–H bonds + 1 non-polar C–C bond, but a polar C–O and O–H bond — so it bridges both worlds.</p>
+      </div>
+      <div class="hy-card">
+        <span class="hy-tag">Named example</span>
+        <p><b>Polymorphism:</b> same chemical structure, different physical form (melting point, solubility, activity). Classic exam example: <b>Chloramphenicol</b> — one polymorph is active, another inactive.</p>
+      </div>
+      <div class="hy-card">
+        <span class="hy-tag">Methods list</span>
+        <p>Techniques to detect polymorphism/crystal form: <b>hot stage microscopy, thermal analysis, IR spectroscopy, X-ray diffraction.</b></p>
+      </div>
+      <div class="hy-card trap">
+        <span class="hy-tag">Trap</span>
+        <p><b>Anhydrous vs. hydrate:</b> the anhydrous form is more soluble than the hydrate form of the same compound (the hydrate's lattice already "used up" some of the attraction to water). Ampicillin trihydrate = 3 water molecules per unit.</p>
+      </div>
+      <div class="hy-card">
+        <span class="hy-tag">Rule + example</span>
+        <p><b>pH:</b> weak acids (e.g. sulfonamides) are more soluble as pH rises (add base → soluble salt); weak bases (e.g. alkaloids) are more soluble as pH falls (add acid → soluble salt). <b>Phenobarbital</b> free acid precipitates below pH 5.5 and dissolves better above it.</p>
+      </div>
+      <div class="hy-card number">
+        <span class="hy-tag">Number</span>
+        <p>Phenobarbital solubility threshold: <b>pH 5.5</b>. Below it, the free acid precipitates.</p>
+      </div>
+      <div class="hy-card trap">
+        <span class="hy-tag">Trap — opposite effects</span>
+        <p><b>Salting-in</b> (electrolyte added to a non-electrolyte solution) → solubility ↑. <b>Salting-out</b> (a soluble salt shares a common ion with a slightly soluble salt) → that slightly soluble salt precipitates, solubility ↓. Classic pair: adding NaCl to saturated AgCl precipitates AgCl via the common Cl⁻ ion.</p>
+      </div>
+      <div class="hy-card number">
+        <span class="hy-tag">Number</span>
+        <p>NaCl reference point: <b>1 g dissolves in 2.8 mL water</b> → falls in the "freely soluble" band (1–10 parts solvent per part solute).</p>
+      </div>
+      <div class="hy-card number">
+        <span class="hy-tag">Table to memorize</span>
+        <p>Solubility bands (parts solvent per part solute): very soluble &lt;1, freely soluble 1–10, soluble 10–30, sparingly soluble 30–100, slightly soluble 100–1000, very slightly soluble 1000–10,000, practically insoluble &gt;10,000.</p>
+      </div>
+      <div class="hy-card trap">
+        <span class="hy-tag">Trap — opposite of solids</span>
+        <p><b>Henry's Law (gas in liquid):</b> solubility of a gas ∝ pressure at constant temperature — but unlike most solids, raising temperature <i>decreases</i> gas solubility. CO₂ is about twice as soluble at 0 °C as at 20 °C.</p>
+      </div>
+      <div class="hy-card number">
+        <span class="hy-tag">Formula</span>
+        <p>Rate of dissolution = <b>ΔC / ΔT (mg/mL/min)</b> — the speed solute enters solution, not the same thing as solubility.</p>
+      </div>
+      <div class="hy-card trap">
+        <span class="hy-tag">Trap — one-way relationship</span>
+        <p>Solubility ↑ always → dissolution rate ↑. But dissolution rate ↑ (via particle size, agitation, heat) does <b>not</b> always mean solubility ↑ — you can speed up how fast the same maximum amount dissolves.</p>
+      </div>
+      <div class="hy-card">
+        <span class="hy-tag">List to memorize</span>
+        <p>3 factors that speed up dissolution rate: <b>smaller particle size</b> (more surface area), <b>agitation</b> (fresh solvent reaches the surface), <b>heating</b> (more frequent solvent–solute collisions).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TOPICS & GLOSSARY ============ -->
+  <section class="panel" id="panel-topics">
+    <div class="section-head">
+      <h2>Topics &amp; glossary</h2>
+      <p>The lecture's structure — main headings and their sub-points — followed by every defined term in one place.</p>
+    </div>
+
+    <div class="toc-card">
+      <h3 style="font-size:19px;margin-bottom:16px;">Lecture map</h3>
+      <ol class="toc-list">
+        <li>
+          <div class="toc-main"><span class="toc-num">1</span>Solubility — definition</div>
+          <ul class="toc-sub">
+            <li><b>Saturated solubility</b> — excess solid shaken with solvent until a maximum dissolves</li>
+            <li><b>Supersaturated solution</b> — heat, dissolve excess, cool undisturbed</li>
+          </ul>
+        </li>
+        <li>
+          <div class="toc-main"><span class="toc-num">2</span>Factors affecting solubility of a solid in a liquid</div>
+          <ul class="toc-sub">
+            <li><b>1. Temperature</b> — endothermic, exothermic, neither (NaCl)</li>
+            <li><b>2. Effect of molecular structure</b> — polar liquids, non-polar liquids, semipolar liquids (ethanol)</li>
+            <li><b>3. Effect of nature of solute</b> — polymorphism, hydrates, solvates</li>
+            <li><b>4. Effect of pH on solubility</b> — weak acids/bases, Phenobarbital example</li>
+            <li><b>5. Effect of other substances</b> — salting-in, salting-out (common-ion effect), AgCl/NaCl example</li>
+          </ul>
+        </li>
+        <li>
+          <div class="toc-main"><span class="toc-num">3</span>Relative terms of solubility</div>
+          <ul class="toc-sub">
+            <li>Descriptive-terms table (very soluble → practically insoluble)</li>
+            <li>NaCl reference: 1 g / 2.8 mL water</li>
+          </ul>
+        </li>
+        <li>
+          <div class="toc-main"><span class="toc-num">4</span>Solubility of gas in liquid</div>
+          <ul class="toc-sub">
+            <li><b>Henry's Law</b> — S(gas) ∝ pressure at constant temperature</li>
+            <li>Effect of rising temperature on gas solubility (CO₂ example)</li>
+          </ul>
+        </li>
+        <li>
+          <div class="toc-main"><span class="toc-num">5</span>Rate of dissolution</div>
+          <ul class="toc-sub">
+            <li>Formula: Rate = ΔC/ΔT (mg/mL/min)</li>
+            <li>Dissolution rate vs. solubility — the one-way relationship</li>
+            <li><b>Factors affecting rate of dissolution</b> — particle size, agitation, heating</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <h3 style="font-size:19px;margin-bottom:14px;">Glossary of defined terms</h3>
+    <dl class="glossary-grid">
+      <div class="gterm"><dt>Solubility</dt><dd>Maximum concentration of a solute a solvent can hold at a given temperature; the solute's ability to form a solution with the solvent.</dd></div>
+      <div class="gterm"><dt>Saturated solubility</dt><dd>The maximum amount of solute dissolved when excess solid is shaken with a solvent for a period of time.</dd></div>
+      <div class="gterm"><dt>Unsaturated solution</dt><dd>A solution that can still dissolve more solute at that temperature.</dd></div>
+      <div class="gterm"><dt>Supersaturated solution</dt><dd>Contains more dissolved solute than normal, made by heating, dissolving excess solute, then cooling undisturbed.</dd></div>
+      <div class="gterm"><dt>Endothermic reaction</dt><dd>Dissolution that has a positive heat of solution; solubility increases as temperature rises.</dd></div>
+      <div class="gterm"><dt>Exothermic reaction</dt><dd>Dissolution that has a negative heat of solution; solubility decreases as temperature rises.</dd></div>
+      <div class="gterm"><dt>Polar liquids</dt><dd>Miscible with other polar liquids, dissolve electrovalent compounds, and form H-bonds with solute (e.g. water, low-MWt alcohols).</dd></div>
+      <div class="gterm"><dt>Non-polar liquids</dt><dd>Required to dissolve non-polar solutes ("like dissolves like").</dd></div>
+      <div class="gterm"><dt>Semipolar liquids</dt><dd>Show properties of both polar and non-polar solvents, e.g. ethanol (non-polar C–H/C–C bonds plus polar C–O/O–H bonds).</dd></div>
+      <div class="gterm"><dt>Polymorphism</dt><dd>A compound existing in more than one crystal form with the same chemical structure but different melting point, solubility, absorption, or activity (e.g. chloramphenicol).</dd></div>
+      <div class="gterm"><dt>Hydrates</dt><dd>Compounds that contain water within their crystal structure (mono-, di-, trihydrate), e.g. ampicillin trihydrate.</dd></div>
+      <div class="gterm"><dt>Solvates</dt><dd>Compounds that contain a solvent other than water within their crystal structure.</dd></div>
+      <div class="gterm"><dt>Salting-in</dt><dd>Adding an electrolyte to a non-electrolyte solution, causing an increase in solubility.</dd></div>
+      <div class="gterm"><dt>Salting-out</dt><dd>Adding a soluble salt that shares a common ion with a slightly soluble salt, causing the slightly soluble salt to precipitate.</dd></div>
+      <div class="gterm"><dt>Henry's Law</dt><dd>The solubility of a gas by weight in a liquid is proportional to pressure at a constant temperature.</dd></div>
+      <div class="gterm"><dt>Rate of dissolution</dt><dd>The speed at which solute enters solution: Rate = ΔC/ΔT (mg/mL/min).</dd></div>
+      <div class="gterm"><dt>Very soluble</dt><dd>&lt;1 part solvent needed per part solute.</dd></div>
+      <div class="gterm"><dt>Freely soluble</dt><dd>1–10 parts solvent needed per part solute (e.g. NaCl).</dd></div>
+      <div class="gterm"><dt>Soluble</dt><dd>10–30 parts solvent needed per part solute.</dd></div>
+      <div class="gterm"><dt>Sparingly soluble</dt><dd>30–100 parts solvent needed per part solute.</dd></div>
+      <div class="gterm"><dt>Slightly soluble</dt><dd>100–1000 parts solvent needed per part solute.</dd></div>
+      <div class="gterm"><dt>Very slightly soluble</dt><dd>1000–10,000 parts solvent needed per part solute.</dd></div>
+      <div class="gterm"><dt>Practically insoluble</dt><dd>&gt;10,000 parts solvent needed per part solute.</dd></div>
+    </dl>
   </section>
 
   <!-- ============ DIAGRAMS ============ -->
@@ -698,6 +903,7 @@ footer{
         <div class="quiz-q" id="quiz-question"></div>
         <div class="opt-list" id="quiz-options"></div>
         <div class="quiz-footer">
+          <button id="quiz-prev-btn" disabled>← Previous</button>
           <span class="feedback-line" id="quiz-feedback"></span>
           <button id="quiz-next-btn" disabled>Next question</button>
         </div>
@@ -714,7 +920,7 @@ footer{
 
 </main>
 
-<footer>© Anmar Taha — Study Smart · Pharmaceutical Technology I</footer>
+<footer>© Anmar Taha — Study Smart · Pharmaceutical Technology I · Telegram <a href="https://t.me/AnmarTaha" target="_blank" style="color:var(--teal);text-decoration:underline;">@AnmarTaha</a> · Instagram <a href="https://instagram.com/a.za18" target="_blank" style="color:var(--teal);text-decoration:underline;">a.za18</a></footer>
 
 <script>
 /* ============================================================
@@ -774,6 +980,9 @@ tabBtns.forEach(btn=>{
     panels.forEach(p=>p.classList.remove("active"));
     btn.classList.add("active");
     document.getElementById("panel-"+btn.dataset.tab).classList.add("active");
+    if(btn.dataset.tab === "mindmap"){
+      setTimeout(buildMap, 0);
+    }
   });
 });
 
@@ -1404,6 +1613,7 @@ let quizIndex = 0;
 let quizScore = 0;
 let quizAnswered = false;
 let quizLevel = 1;
+let quizLog = []; // per-question record: {options, selected, correct}, once answered
 
 function showLevelSelect(){
   document.getElementById("quiz-level-select").style.display = "block";
@@ -1416,6 +1626,7 @@ function startQuiz(level){
   quizOrder = shuffleArray(pool);
   quizIndex = 0;
   quizScore = 0;
+  quizLog = [];
   document.getElementById("quiz-level-select").style.display = "none";
   document.getElementById("quiz-active").style.display = "block";
   document.getElementById("quiz-result").style.display = "none";
@@ -1428,16 +1639,21 @@ document.querySelectorAll("#quiz-level-select .lvl-chip").forEach(btn=>{
 });
 document.getElementById("quiz-change-lvl-btn").addEventListener("click", showLevelSelect);
 document.getElementById("quiz-result-change-lvl-btn").addEventListener("click", showLevelSelect);
+function quizAnsweredCount(){
+  return quizLog.filter(Boolean).length;
+}
 function renderQuizQuestion(){
-  quizAnswered = false;
   const item = quizOrder[quizIndex];
-  const shuffledOptions = shuffleArray(item.options);
+  const saved = quizLog[quizIndex];
+  quizAnswered = !!saved;
+  const shuffledOptions = saved ? saved.options : shuffleArray(item.options);
   document.getElementById("quiz-question").textContent = item.q;
   document.getElementById("quiz-feedback").textContent = "";
   document.getElementById("quiz-feedback").className = "feedback-line";
-  document.getElementById("quiz-next-btn").disabled = true;
+  document.getElementById("quiz-next-btn").disabled = !saved;
+  document.getElementById("quiz-prev-btn").disabled = quizIndex === 0;
   document.getElementById("quiz-progress-text").textContent = "Question " + (quizIndex+1) + " of " + quizOrder.length;
-  document.getElementById("quiz-score-text").textContent = "Score: " + quizScore + " / " + quizIndex;
+  document.getElementById("quiz-score-text").textContent = "Score: " + quizScore + " / " + quizAnsweredCount();
   document.getElementById("quiz-progress-fill").style.width = ((quizIndex)/quizOrder.length*100) + "%";
 
   const letters = ["A","B","C","D"];
@@ -1465,12 +1681,32 @@ function renderQuizQuestion(){
           if(shuffledOptions[idx] === item.correct) el.classList.add("correct");
         });
       }
-      document.getElementById("quiz-score-text").textContent = "Score: " + quizScore + " / " + (quizIndex+1);
+      quizLog[quizIndex] = {options: shuffledOptions, selected: opt, correct: isCorrect};
+      document.getElementById("quiz-score-text").textContent = "Score: " + quizScore + " / " + quizAnsweredCount();
       document.getElementById("quiz-next-btn").disabled = false;
     });
+    if(saved){
+      div.classList.add("locked");
+      if(opt === saved.selected && !saved.correct) div.classList.add("wrong");
+      if(opt === item.correct) div.classList.add("correct");
+    }
     optList.appendChild(div);
   });
+  if(saved){
+    if(saved.correct){
+      document.getElementById("quiz-feedback").textContent = "Correct!";
+      document.getElementById("quiz-feedback").className = "feedback-line good";
+    } else {
+      document.getElementById("quiz-feedback").textContent = "Not quite — correct answer highlighted.";
+      document.getElementById("quiz-feedback").className = "feedback-line bad";
+    }
+  }
 }
+document.getElementById("quiz-prev-btn").addEventListener("click", ()=>{
+  if(quizIndex === 0) return;
+  quizIndex--;
+  renderQuizQuestion();
+});
 document.getElementById("quiz-next-btn").addEventListener("click", ()=>{
   quizIndex++;
   if(quizIndex >= quizOrder.length){
